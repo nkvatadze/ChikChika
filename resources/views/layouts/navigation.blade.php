@@ -1,92 +1,50 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
-    <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
-            <div class="flex">
-                <!-- Logo -->
-                <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-20 w-auto fill-current text-gray-600" />
-                    </a>
-                </div>
-
-                <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-                </div>
+<nav class="h-full shadow-md bg-white grid grid-cols-2 grid-rows-3 px-2">
+    <div class="col-start-2 row-start-1 row-end-3 col-end-3 flex flex-col justify-start items-end px-10">
+        <div class="flex flex-col justify-start items-baseline">
+            <div
+                class="mt-5 ml-4 inline-block rounded-full hover:text-blue-600 hover:bg-blue-50 cursor-pointer transition duration-300 ease-in-out fill-current">
+                <x-application-logo
+                    class="cursor-pointer  w-16 h-16"/>
             </div>
 
-            <!-- Settings Dropdown -->
-            <div class="hidden sm:flex sm:items-center sm:ml-6">
-                <x-dropdown align="right" width="48">
-                    <x-slot name="trigger">
-                        <button class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
-                            <div>{{ Auth::user()->username }}</div>
-
-                            <div class="ml-1">
-                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                </svg>
-                            </div>
-                        </button>
-                    </x-slot>
-
-                    <x-slot name="content">
-                        <!-- Authentication -->
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-
-                            <x-dropdown-link :href="route('logout')"
-                                    onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                {{ __('Log Out') }}
-                            </x-dropdown-link>
-                        </form>
-                    </x-slot>
-                </x-dropdown>
-            </div>
-
-            <!-- Hamburger -->
-            <div class="-mr-2 flex items-center sm:hidden">
-                <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
-                    <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                        <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
+            <div
+                class="flex flex-row justify-between items-center mt-3 py-2 rounded-full px-5 ml-2 hover:text-blue-600
+                hover:bg-blue-50 cursor-pointer transition duration-300 ease-in-out">
+                <img src="{{ asset('images/bird-house.png') }}" class="w-10 h-10 mr-10" alt="#">
+                <a class="text-lg text-ellipsis whitespace-nowrap rounded "
+                   href="{{ route('home') }}" data-mdb-ripple="true" data-mdb-ripple-color="primary">
+                    <span>{{ __('Home') }}</span>
+                </a>
             </div>
         </div>
     </div>
+    <div
+        class="inline-block col-start-2 col-end-3 row-start-3 flex flex-col justify-end items-end px-10 py-10 ml-2 mt-3">
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button
+                class="flex flex-row justify-between items-center text-lg text-gray-700 text-ellipsis whitespace-nowrap py-2 px-5 rounded-full hover:text-blue-600
+                hover:bg-blue-50 cursor-pointer transition duration-300 ease-in-out"
+                type="submit">
+                <img src="{{ asset('images/logout.png') }}" class="w-8 h-8 mr-10" alt="#">
+                {{ __('Logout') }}
+            </button>
 
-    <!-- Responsive Navigation Menu -->
-    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
-        <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
-            </x-responsive-nav-link>
-        </div>
-
-        <!-- Responsive Settings Options -->
-        <div class="pt-4 pb-1 border-t border-gray-200">
-            <div class="px-4">
-                <div class="font-medium text-base text-gray-800">{{ Auth::user()->username }}</div>
-                <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
-            </div>
-
-            <div class="mt-3 space-y-1">
-                <!-- Authentication -->
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-
-                    <x-responsive-nav-link :href="route('logout')"
-                            onclick="event.preventDefault();
-                                        this.closest('form').submit();">
-                        {{ __('Log Out') }}
-                    </x-responsive-nav-link>
-                </form>
-            </div>
-        </div>
+        </form>
     </div>
+
 </nav>
+<script>
+    const dropdown = document.getElementById('dropdown');
+    const dropdownContent = document.getElementById('dropdown-content');
+
+    dropdown.onclick = function () {
+        if (dropdownContent.classList.contains('hidden')) {
+            dropdownContent.classList.remove('hidden');
+            dropdownContent.classList.add('block');
+        } else if (dropdownContent.classList.contains('block')) {
+            dropdownContent.classList.remove('block');
+            dropdownContent.classList.add('hidden');
+        }
+    }
+</script>
