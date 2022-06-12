@@ -9,8 +9,8 @@
 
             <div
                 class="flex flex-row justify-between items-center mt-3 py-2 rounded-full px-5 ml-2 hover:text-blue-600
-                hover:bg-blue-50 cursor-pointer transition duration-300 ease-in-out">
-                <img src="{{ asset('images/bird-house.png') }}" class="w-10 h-10 mr-10" alt="#">
+                hover:bg-blue-50 cursor-pointer transition duration-300 ease-in-out text-left">
+                <img src="{{ asset('images/bird-house.png') }}" class="w-10 h-10 mr-1" alt="#">
                 <a class="text-lg text-ellipsis whitespace-nowrap rounded "
                    href="{{ route('home') }}" data-mdb-ripple="true" data-mdb-ripple-color="primary">
                     <span>{{ __('Home') }}</span>
@@ -19,32 +19,30 @@
         </div>
     </div>
     <div
-        class="inline-block col-start-2 col-end-3 row-start-3 flex flex-col justify-end items-end px-10 py-10 ml-2 mt-3">
-        <form method="POST" action="{{ route('logout') }}">
-            @csrf
-            <button
-                class="flex flex-row justify-between items-center text-lg text-gray-700 text-ellipsis whitespace-nowrap py-2 px-5 rounded-full hover:text-blue-600
+        class="col-start-2 col-end-3 row-start-3 flex flex-col justify-end items-end px-10 py-10 mt-3">
+        <div
+            class="flex flex-row justify-between items-center mt-3 py-2 rounded-full px-5 ml-2 hover:text-blue-600
+                hover:bg-blue-50 cursor-pointer transition duration-300 ease-in-out">
+            <img src="{{ asset('images/settings.png') }}" class="w-10 h-10" alt="#">
+            <a class="text-lg text-ellipsis whitespace-nowrap rounded "
+               href="{{ route('users.edit') }}" data-mdb-ripple="true" data-mdb-ripple-color="primary">
+                <span>{{ __('Settings') }}</span>
+            </a>
+        </div>
+        <div class="">
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button
+                    class="flex flex-row justify-between items-center text-lg text-gray-700 text-ellipsis whitespace-nowrap py-2 px-5 rounded-full hover:text-blue-600
                 hover:bg-blue-50 cursor-pointer transition duration-300 ease-in-out"
-                type="submit">
-                <img src="{{ asset('images/logout.png') }}" class="w-8 h-8 mr-10" alt="#">
-                {{ __('Logout') }}
-            </button>
+                    type="submit">
+                    <img src="{{ asset('images/logout.png') }}" class="w-8 h-8" alt="#">
+                    <span>{{ __('Logout') }}</span>
+                </button>
 
-        </form>
+            </form>
+        </div>
+
     </div>
 
 </nav>
-<script>
-    const dropdown = document.getElementById('dropdown');
-    const dropdownContent = document.getElementById('dropdown-content');
-
-    dropdown.onclick = function () {
-        if (dropdownContent.classList.contains('hidden')) {
-            dropdownContent.classList.remove('hidden');
-            dropdownContent.classList.add('block');
-        } else if (dropdownContent.classList.contains('block')) {
-            dropdownContent.classList.remove('block');
-            dropdownContent.classList.add('hidden');
-        }
-    }
-</script>

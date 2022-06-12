@@ -15,15 +15,19 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    @livewireStyles
 </head>
 <body class="font-sans antialiased">
 <div class="min-h-screen bg-gray-100 grid grid-cols-3">
     <div class="col-span-1">
         @include('layouts.navigation')
     </div>
-    <main class="col-span-2">
+    <main class="col-span-1">
         {{ $slot }}
     </main>
+
+    @livewireScripts
+    @stack('scripts')
 </div>
 </body>
 </html>
