@@ -43,6 +43,8 @@
                     @forelse($users as $user)
                         <div class="w-full flex justify-between items-center my-2">
                             <div class="flex justify-start items-start">
+                                @include('partials.flash-messages')
+
                                 <x-avatar class="w-10 h-10 mr-5" :src="$user->profile_image_url"/>
                                 <div class="flex flex-col">
                                     <p class="font-bold">{{ $user->name }}</p>

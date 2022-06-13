@@ -19,9 +19,11 @@
 </head>
 <body class="font-sans antialiased">
 <div class="min-h-screen bg-gray-100 grid grid-cols-3">
+
     <div class="col-span-1">
         @include('layouts.navigation')
     </div>
+
     <main class="col-span-2">
         {{ $slot }}
     </main>

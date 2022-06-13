@@ -5,3 +5,21 @@
 input[type="checkbox"]:focus{
     outline: none;
 }
+
+.flash-message {
+    animation-name: fadeIn;
+    animation-duration: 1s;
+    animation-delay: 0s;
+    animation-timing-function: ease;
+}
+
+@keyframes fadeIn {
+    0% {
+        transform: translateX(-40%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+

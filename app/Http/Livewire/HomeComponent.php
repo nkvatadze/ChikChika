@@ -16,9 +16,11 @@ class HomeComponent extends Component
         $this->tweets = Tweet::all();
     }
 
-    public function follow(int $userId)
+    public function follow(User $user)
     {
-        auth()->user()->followings()->attach($userId);
+        auth()->user()->followings()->attach($user);
+
+        session()->flash('success', "User $user->username followed successfully");
     }
 
     public function render(): View

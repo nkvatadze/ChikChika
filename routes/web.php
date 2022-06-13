@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Livewire\HomeComponent;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,9 +17,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/home');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/home', \App\Http\Livewire\HomeComponent::class)
-        ->middleware('verified')->name('home');
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/home', HomeComponent::class)->name('home');
 
     Route::controller(UserController::class)->prefix('users')->name('users.')
         ->group(function () {
