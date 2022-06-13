@@ -25,7 +25,7 @@ class UpdateRequest extends FormRequest
     {
         return [
             'is_private' => 'sometimes',
-            'username' => 'sometimes|unique:users,username,' . auth()->user()->username
+            'username' => 'sometimes|unique:users,username,' . auth()->id()
         ];
     }
 }

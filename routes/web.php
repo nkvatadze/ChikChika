@@ -15,7 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home');
+    $users = \App\Models\User::notAuth()->get();
+    $tweets = \App\Models\Tweet::all();
+    return view('home', compact('users', 'tweets'));
 })->middleware(['auth', 'verified'])->name('home');
 
 Route::middleware('auth')->group(function () {

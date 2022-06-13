@@ -14,12 +14,16 @@
                             <label class="text-lg mr-5" for="is_private">
                                 {{ __('Private account') }}
                             </label>
-                            {{--{{--}}
-                            {{--    dd(auth()->user()->is_private)--}}
-                            {{--}}--}}
-                            <input class="without-outline" type="checkbox" name="is_private" id="is_private"
+                            <input class="without-outline @error('is_private') border border-red-700 @enderror"
+                                   type="checkbox" name="is_private" id="is_private"
                                    value="1"
                                 {{ auth()->user()->is_private ? 'checked' : '' }}>
+                        </div>
+
+                        <div>
+                            @error('is_private')
+                            <div class="italic text-red-600 text-sm mt-2">{{ $message }}</div>
+                            @enderror
                         </div>
                         <hr>
                         <div class="flex justify-start items-center mt-5">
@@ -27,15 +31,22 @@
                                 {{ __('Username') }}
                             </label>
 
-                            <input type="text" name="username" class="px-3 py-1 w-1/2 border-gray-400 rounded"
+                            <input type="text" name="username"
+                                   class="px-3 py-1 @error('username') border-2 border-red-400 @else border-gray-400 @enderror w-1/2 rounded"
                                    id="username" value="{{ auth()->user()->username }}">
+
+                        </div>
+                        <div class="ml-10">
+                            @error('username')
+                            <div class="italic text-red-600 text-sm mt-2">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="text-right mt-2">
                             <button class="bg-cyan-500 text-white py-1 px-3 rounded text-md hover:bg-cyan-600"
                                     type="submit">{{ __('Save') }}</button>
                         </div>
                         @error('message')
-                            {{ $message }}
+                        {{ $message }}
                         @enderror
                     </form>
                 </div>
