@@ -684,6 +684,39 @@ select {
   --tw-backdrop-saturate:  ;
   --tw-backdrop-sepia:  ;
 }
+.container {
+  width: 100%;
+}
+@media (min-width: 640px) {
+
+  .container {
+    max-width: 640px;
+  }
+}
+@media (min-width: 768px) {
+
+  .container {
+    max-width: 768px;
+  }
+}
+@media (min-width: 1024px) {
+
+  .container {
+    max-width: 1024px;
+  }
+}
+@media (min-width: 1280px) {
+
+  .container {
+    max-width: 1280px;
+  }
+}
+@media (min-width: 1536px) {
+
+  .container {
+    max-width: 1536px;
+  }
+}
 .fixed {
   position: fixed;
 }
@@ -803,6 +836,15 @@ select {
 }
 .mt-6 {
   margin-top: 1.5rem;
+}
+.mb-0 {
+  margin-bottom: 0px;
+}
+.ml-auto {
+  margin-left: auto;
+}
+.mr-3 {
+  margin-right: 0.75rem;
 }
 .box-border {
   box-sizing: border-box;
@@ -1197,6 +1239,9 @@ select {
 }
 .pr-4 {
   padding-right: 1rem;
+}
+.pt-0 {
+  padding-top: 0px;
 }
 .text-left {
   text-align: left;

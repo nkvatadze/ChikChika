@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -45,6 +46,26 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * @return BelongsToMany
+     */
+    public function followings(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'follower_user', 'follower_id', 'user_id')
+            ->using(FollowerUser::class)
+            ->withPivot('created_at');
+    }
+
+    /**
+     * @return BelongsToMany
+     */
+    public function followers(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'follower_user', 'user_id', 'follower_id')
+            ->using(FollowerUser::class)
+            ->withPivot('created_at');
+    }
+
     public function profileImageUrl(): Attribute
     {
         return Attribute::make(
@@ -52,9 +73,13 @@ class User extends Authenticatable implements MustVerifyEmail
         );
     }
 
-    public function scopeNotAuth(Builder $query)
+    public function scopeNotAuth(Builder $query): Builder
     {
         return $query->whereNot('id', auth()->id());
     }
 
+    public function scopeNotFollowedBy(Builder $query, int $userId): Builder
+    {
+        return $query->whereDoesntHave('followers', fn($query) => $query->where('follower_id', $userId));
+    }
 }

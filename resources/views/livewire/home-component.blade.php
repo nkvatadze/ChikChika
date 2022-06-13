@@ -50,21 +50,22 @@
                                 </div>
                             </div>
                             <div>
-                                <button class="bg-black px-3 py-1 rounded-full text-white">
+                                <button wire:click="follow({{ $user->id }})"
+                                        class="bg-black px-3 py-1 rounded-full text-white">
                                     {{ __('Follow') }}
                                 </button>
                             </div>
                         </div>
-
-
                     @empty
-                        <div class="flex flex-col justify-center items-center">
+                        <div class="w-full flex flex-col justify-center items-center">
                             <x-sad-emoji class="w-6 h-6 my-5"/>
                             <p>{{ __('No users to show yet') }}</p>
                         </div>
 
                     @endforelse
                 </div>
+
+
             </div>
         </div>
     </div>
