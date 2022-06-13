@@ -4,16 +4,19 @@ namespace App\Http\Livewire;
 
 use Illuminate\View\View;
 use App\Models\{Tweet, User};
-use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Livewire\Component;
 
 class HomeComponent extends Component
 {
-    public EloquentCollection $tweets;
+    public Tweet $tweet;
+
+    protected $rules = [
+        'tweet.tweet' => 'required|string|min:1|max:140'
+    ];
 
     public function mount()
     {
-        $this->tweets = Tweet::all();
+        $this->tweet = new Tweet();
     }
 
     public function follow(User $user)
@@ -23,12 +26,22 @@ class HomeComponent extends Component
         session()->flash('success', "User $user->username followed successfully");
     }
 
+    public function createTweet()
+    {
+        $this->validate();
+
+        $this->tweet->user_id = auth()->id();
+
+        $this->tweet->save();
+    }
+
     public function render(): View
     {
         $users = User::notAuth()->notFollowedBy(auth()->id())->get();
 
         return view('livewire.home-component', [
-            'users' => $users
+            'users' => $users,
+            'tweets' => Tweet::all()
         ]);
     }
 }

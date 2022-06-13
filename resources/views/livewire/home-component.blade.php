@@ -3,7 +3,8 @@
         <div class="max-w-2xl ml-10">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <form method="POST" action="#">
+                    <form wire:submit.prevent="createTweet">
+                        @csrf
                         <div class="flex justify-start items-start">
                             <div>
                                 <x-avatar class="w-20 h-20 mr-5" :src="auth()->user()->profile_image_url"/>
@@ -11,6 +12,7 @@
                             <div class="w-full">
                                 <label class="hidden" for="tweet"></label>
                                 <textarea
+                                    wire:model="tweet.tweet"
                                     class="w-full box-border resize-none text-xl py-5 border-transparent focus:border-transparent focus:ring-0 focus:outline-none overflow-visible"
                                     placeholder="What's happening?" name="tweet" id="tweet"></textarea>
                             </div>
@@ -26,6 +28,10 @@
         </div>
         @forelse($tweets as $tweet)
             <div class="ml-10 p-6 flex flex-col justify-center items-center bg-white border-b border-gray-200">
+                <div class="flex justify-start items-start">
+                    <p class="font-bold">{{ $tweet->user->name }}</p>
+                    <p><span>@</span>{{ $tweet->user->username }}</p>
+                </div>
             </div>
         @empty
             <div class="ml-10 p-6 flex flex-col justify-center items-center bg-white border-b border-gray-200">
