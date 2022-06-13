@@ -14,13 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    $users = \App\Models\User::notAuth()->get();
-    $tweets = \App\Models\Tweet::all();
-    return view('home', compact('users', 'tweets'));
-})->middleware(['auth', 'verified'])->name('home');
+Route::redirect('/', '/home');
 
 Route::middleware('auth')->group(function () {
+    Route::get('/home', \App\Http\Livewire\HomeComponent::class)
+        ->middleware('verified')->name('home');
+
     Route::controller(UserController::class)->prefix('users')->name('users.')
         ->group(function () {
             Route::get('/edit', 'edit')->name('edit');

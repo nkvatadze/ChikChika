@@ -11,7 +11,7 @@ class Avatar extends Component
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(public string $src)
     {
         //
     }

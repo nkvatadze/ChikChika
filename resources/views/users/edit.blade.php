@@ -26,13 +26,30 @@
                             @enderror
                         </div>
                         <hr>
-                        <div class="flex justify-start items-center mt-5">
-                            <label class="text-lg mr-5" for="username">
+                        <div class="grid grid-cols-3 justify-start items-center mt-5 mb-5">
+
+                            <label class="col-span-1 text-lg mr-5" for="name">
+                                {{ __('Name to display') }}
+                            </label>
+
+                            <input type="text" name="username"
+                                   class="col-span-2 w-full px-3 py-1 @error('name') border-2 border-red-400 @else border-gray-400 @enderror w-1/2 rounded"
+                                   id="name" value="{{ auth()->user()->name }}">
+
+                        </div>
+                        <div class="ml-10">
+                            @error('name')
+                            <div class="italic text-red-600 text-sm mt-2">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <hr>
+                        <div class="grid grid-cols-3 justify-start items-center mt-5">
+                            <label class="col-span-1 text-lg mr-5" for="username">
                                 {{ __('Username') }}
                             </label>
 
                             <input type="text" name="username"
-                                   class="px-3 py-1 @error('username') border-2 border-red-400 @else border-gray-400 @enderror w-1/2 rounded"
+                                   class="col-span-2 w-full px-3 py-1 @error('username') border-2 border-red-400 @else border-gray-400 @enderror w-1/2 rounded"
                                    id="username" value="{{ auth()->user()->username }}">
 
                         </div>
