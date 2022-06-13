@@ -22,6 +22,7 @@ Route::middleware('auth')->group(function () {
     Route::controller(UserController::class)->prefix('users')->name('users.')
         ->group(function () {
             Route::get('/edit', 'edit')->name('edit');
+            Route::patch('/', 'update')->name('update');
         });
 });
 

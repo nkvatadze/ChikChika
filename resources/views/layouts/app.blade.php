@@ -22,7 +22,7 @@
     <div class="col-span-1">
         @include('layouts.navigation')
     </div>
-    <main class="col-span-1">
+    <main class="col-span-2">
         {{ $slot }}
     </main>
 
