@@ -56,7 +56,7 @@
                             @endif
                         </div>
                         <div class="flex justify-start items-center cursor-pointer group"
-                             @if($tweet->likes->count()) wire:click="dislike({{ $tweet->id }})"
+                             @if($tweet->likedByAuthUser()) wire:click="dislike({{ $tweet->id }})"
                              @else wire:click="like({{ $tweet->id }})"
                             @endif>
                             <div class="group-hover:bg-heart-hover p-2 rounded-full transition ease-in">
@@ -67,7 +67,8 @@
                                 @endif
                             </div>
                             @if($tweet->likes_count)
-                                <span class="text-sm ml-2 mt-1 group-hover:text-heart-main">{{ $tweet->likes_count }}</span>
+                                <span
+                                    class="text-sm ml-2 mt-1 group-hover:text-heart-main">{{ $tweet->likes_count }}</span>
                             @endif
                         </div>
                     </div>
@@ -80,6 +81,15 @@
                 <p>{{ __('No tweets to show yet') }}</p>
             </div>
         @endforelse
+
+        @if($shouldLoadMore)
+            <div class="flex justify-center  items-center mt-5">
+                <button wire:click="loadMore"
+                        class="bg-cyan-500 text-white hover:opacity-90 transition ease-in rounded-full px-3 py-2">
+                    {{ __('Load More') }}
+                </button>
+            </div>
+        @endif
     </div>
     <div class="py-4 col-span-1">
         <div class="w-3/4 ml-10">
@@ -100,7 +110,7 @@
                             </div>
                             <div>
                                 <button wire:click="follow({{ $user->id }})"
-                                        class="bg-black px-3 py-1 rounded-full text-white">
+                                        class="bg-black hover:opacity-75 transition ease-in px-3 py-1 rounded-full text-white">
                                     {{ __('Follow') }}
                                 </button>
                             </div>
@@ -113,8 +123,6 @@
 
                     @endforelse
                 </div>
-
-
             </div>
         </div>
     </div>

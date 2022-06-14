@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -19,6 +20,17 @@ class Tweet extends Model
         'user_id',
         'tweet'
     ];
+
+    /**
+     * @return bool
+     * @throws Exception
+     */
+    public function likedByAuthUser(): bool
+    {
+        $this->relationLoaded('likes') ?? throw new Exception('Eager loading problem can occur, please load likes relationship');
+
+        return $this->likes->contains('user_id', auth()->id());
+    }
 
     /**
      * @return HasMany

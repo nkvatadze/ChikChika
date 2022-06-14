@@ -1412,6 +1412,12 @@ select {
 .opacity-100 {
   opacity: 1;
 }
+.opacity-90 {
+  opacity: 0.9;
+}
+.opacity-75 {
+  opacity: 0.75;
+}
 .shadow-sm {
   --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
@@ -1562,6 +1568,18 @@ input[type="checkbox"]:focus {
 .hover\:text-gray-800:hover {
   --tw-text-opacity: 1;
   color: rgb(31 41 55 / var(--tw-text-opacity));
+}
+.hover\:opacity-75:hover {
+  opacity: 0.75;
+}
+.hover\:opacity-90:hover {
+  opacity: 0.9;
+}
+.hover\:opacity-40:hover {
+  opacity: 0.4;
+}
+.hover\:opacity-100:hover {
+  opacity: 1;
 }
 .focus\:z-10:focus {
   z-index: 10;
