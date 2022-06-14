@@ -27,15 +27,56 @@
             </div>
         </div>
         @forelse($tweets as $tweet)
-            <div class="ml-10 p-6 flex flex-col justify-center items-center bg-white border-b border-gray-200">
-                <div class="flex justify-start items-start">
-                    <p class="font-bold">{{ $tweet->user->name }}</p>
-                    <p><span>@</span>{{ $tweet->user->username }}</p>
+            <div class="ml-10 p-6 flex justify-start items-start bg-white border-b border-gray-200">
+                <div>
+                    <x-avatar class="w-20 h-20 mr-5" :src="$tweet->user->profile_image_url"/>
                 </div>
+                <div class="flex flex-col">
+                    <div class="flex justify-start items-start">
+                        <p class="font-bold mr-3">{{ $tweet->user->name }}</p>
+                        <p class="flex justify-start items-center text-gray-500">
+                            <span>@</span>
+                            {{ $tweet->user->username }}
+                            <span class="mx-2 block w-1 h-1 rounded-full bg-gray-500"></span>
+                        </p>
+                        <p>{{ $tweet->created_at->toFormattedDateString() }}</p>
+                    </div>
+                    <div class="text-lg text-black">
+                        <p>
+                            {{ $tweet->tweet }}
+                        </p>
+                    </div>
+                    <div class="flex justify-start items-start mt-10">
+                        <div class="flex justify-start items-center cursor-pointer mr-16 group ">
+                            <div class="group-hover:bg-replies p-2 rounded-full transition ease-in">
+                                <x-icon class="w-5 h-5" :src="asset('images/topic.png')"/>
+                            </div>
+                            @if($tweet->replies_count)
+                                <span class="text-sm ml-2 mt-1">{{ $tweet->replies_count }}</span>
+                            @endif
+                        </div>
+                        <div class="flex justify-start items-center cursor-pointer group"
+                             @if($tweet->likes->count()) wire:click="dislike({{ $tweet->id }})"
+                             @else wire:click="like({{ $tweet->id }})"
+                            @endif>
+                            <div class="group-hover:bg-heart-hover p-2 rounded-full transition ease-in">
+                                @if($tweet->likes->count())
+                                    <x-icon class="w-5 h-5" :src="asset('images/heart-filled.svg')"/>
+                                @else
+                                    <x-icon class="w-5 h-5" :src="asset('images/heart.svg')"/>
+                                @endif
+                            </div>
+                            @if($tweet->likes_count)
+                                <span class="text-sm ml-2 mt-1 group-hover:text-heart-main">{{ $tweet->likes_count }}</span>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+
             </div>
         @empty
             <div class="ml-10 p-6 flex flex-col justify-center items-center bg-white border-b border-gray-200">
-                <x-sad-emoji class="w-6 h-6 my-5"/>
+                <x-icon class="w-6 h-6 my-5" :src="asset('images/sad.png')"/>
                 <p>{{ __('No tweets to show yet') }}</p>
             </div>
         @endforelse
@@ -66,7 +107,7 @@
                         </div>
                     @empty
                         <div class="w-full flex flex-col justify-center items-center">
-                            <x-sad-emoji class="w-6 h-6 my-5"/>
+                            <x-icon class="w-6 h-6 my-5" :src="asset('images/sad.png')"/>
                             <p>{{ __('No users to show yet') }}</p>
                         </div>
 
@@ -80,10 +121,10 @@
 
 </div>
 
-@push('scripts')
-    <script>
-        const tweetText = document.getElementById('tweet')
+{{--@push('scripts')--}}
+{{--    <script>--}}
+{{--        const tweetText = document.getElementById('tweet')--}}
 
-        tweetText.style.height = tweetText.scrollHeight + 'px';
-    </script>
-@endpush
+{{--        tweetText.style.height = tweetText.scrollHeight + 'px';--}}
+{{--    </script>--}}
+{{--@endpush--}}

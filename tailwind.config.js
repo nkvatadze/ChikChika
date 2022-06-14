@@ -10,6 +10,13 @@ module.exports = {
 
     theme: {
         extend: {
+            colors: {
+                'heart': {
+                    'main': "#ff63ab",
+                    'hover': "#F263AB34"
+                },
+                'replies': "#69d6fa",
+            },
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
             },

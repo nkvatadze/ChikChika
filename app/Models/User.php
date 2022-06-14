@@ -75,6 +75,15 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Tweet::class);
     }
 
+    /**
+     * @return HasMany
+     */
+    public function likedTweets(): HasMany
+    {
+        return $this->hasMany(TweetLike::class);
+    }
+
+
     public function profileImageUrl(): Attribute
     {
         return Attribute::make(

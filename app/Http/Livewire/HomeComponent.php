@@ -3,7 +3,7 @@
 namespace App\Http\Livewire;
 
 use Illuminate\View\View;
-use App\Models\{Tweet, User};
+use App\Models\{Tweet, TweetLike, User};
 use Livewire\Component;
 
 class HomeComponent extends Component
@@ -35,13 +35,29 @@ class HomeComponent extends Component
         $this->tweet->save();
     }
 
+    public function like($tweetId)
+    {
+        auth()->user()->likedTweets()->create([
+            'tweet_id' => $tweetId
+        ]);
+    }
+
+    public function dislike($tweetId)
+    {
+        auth()->user()->likedTweets()->where('tweet_id', $tweetId)->delete();
+    }
+
     public function render(): View
     {
         $users = User::notAuth()->notFollowedBy(auth()->id())->get();
 
         return view('livewire.home-component', [
             'users' => $users,
-            'tweets' => Tweet::all()
+            'tweets' => Tweet::withCount('likes', 'replies')
+                ->with([
+                    'likes' => fn($query) => $query->where('user_id', auth()->id())
+                ])
+                ->get()
         ]);
     }
 }

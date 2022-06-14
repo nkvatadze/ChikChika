@@ -16,18 +16,3 @@
         <strong class="mr-3">{{ session('warning') }}</strong>
     </div>
 @endif
-
-@push('scripts')
-    <script>
-        setTimeout(function () {
-            const flashMessage = document.getElementsByClassName('flash-message')[0]
-            flashMessage.style.transition = `opacity 0.5s ease-in-out`
-            flashMessage.style.opacity = 0;
-
-            flashMessage.addEventListener('transitioned', () => {
-                flashMessage.remove();
-            })
-
-        }, 3000)
-    </script>
-@endpush
