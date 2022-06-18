@@ -18,13 +18,13 @@
     @livewireStyles
 </head>
 <body class="font-sans antialiased">
-<div class="min-h-screen bg-gray-100 grid grid-cols-3">
+<div class="min-h-screen bg-gray-100 grid grid-cols-4">
 
-    <div class="col-span-1">
+    <div class="col-span-1 w-full">
         @include('layouts.navigation')
     </div>
 
-    <main class="col-span-2">
+    <main class="col-span-3">
         {{ $slot }}
     </main>
 

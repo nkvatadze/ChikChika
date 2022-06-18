@@ -753,6 +753,9 @@ select {
 .col-span-2 {
   grid-column: span 2 / span 2;
 }
+.col-span-3 {
+  grid-column: span 3 / span 3;
+}
 .col-start-2 {
   grid-column-start: 2;
 }
@@ -964,8 +967,14 @@ select {
 .max-w-6xl {
   max-width: 72rem;
 }
+.max-w-3xl {
+  max-width: 48rem;
+}
 .max-w-2xl {
   max-width: 42rem;
+}
+.max-w-lg {
+  max-width: 32rem;
 }
 .flex-1 {
   flex: 1 1 0%;
@@ -1019,6 +1028,9 @@ select {
 }
 .grid-cols-3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.grid-cols-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 .grid-rows-3 {
   grid-template-rows: repeat(3, minmax(0, 1fr));
@@ -1412,9 +1424,6 @@ select {
 .opacity-100 {
   opacity: 1;
 }
-.opacity-90 {
-  opacity: 0.9;
-}
 .opacity-75 {
   opacity: 0.75;
 }
@@ -1569,17 +1578,14 @@ input[type="checkbox"]:focus {
   --tw-text-opacity: 1;
   color: rgb(31 41 55 / var(--tw-text-opacity));
 }
-.hover\:opacity-75:hover {
-  opacity: 0.75;
+.hover\:opacity-100:hover {
+  opacity: 1;
 }
 .hover\:opacity-90:hover {
   opacity: 0.9;
 }
-.hover\:opacity-40:hover {
-  opacity: 0.4;
-}
-.hover\:opacity-100:hover {
-  opacity: 1;
+.hover\:opacity-75:hover {
+  opacity: 0.75;
 }
 .focus\:z-10:focus {
   z-index: 10;

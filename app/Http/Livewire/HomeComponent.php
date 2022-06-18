@@ -4,95 +4,106 @@ namespace App\Http\Livewire;
 
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\View\View;
-use App\Models\{Tweet, TweetLike, User};
+use App\Models\{Tweet, User};
 use Livewire\Component;
 
 class HomeComponent extends Component
 {
     const PER_PAGE = 5;
 
-    public Tweet $tweet;
-    public int $lastTweetId;
-    public bool $shouldLoadMore = false;
-//    public EloquentCollection $tweets;
+    public string $tweet;
+    public int $page = 1;
+    public bool $hasNextPage;
+    public EloquentCollection $tweets;
 
     protected $rules = [
-        'tweet.tweet' => 'required|string|min:1|max:140'
+        'tweet' => 'required|string|min:1|max:140'
     ];
 
-    public function mount()
+    public function mount(): void
     {
-        $this->tweet = new Tweet();
+        $this->tweet = '';
 
-//        $this->tweets = Tweet::query()->withCount('likes', 'replies')
-//            ->limit(self::PER_PAGE)
-//            ->orderByDesc('id')
-//            ->with([
-//                'likes' => fn($query) => $query->where('user_id', auth()->id())
-//            ])
-//            ->get();
+        $this->tweets = new EloquentCollection();
 
-//        $this->lastTweetId = $this->tweets->last()->id;
-
-//        $this->shouldLoadMore = (bool)Tweet::selectRaw('1')
-//            ->where('id', '<', $this->lastTweetId)
-//            ->first();
+        $this->loadTweets();
     }
 
-    public function follow(User $user)
+    public function loadTweets(): void
+    {
+        $tweets = Tweet::query()->withCount('likes', 'replies')
+            ->orderByDesc('id')
+            ->with([
+                'user',
+                'likes' => fn($query) => $query->where('user_id', auth()->id())
+            ])->paginate(self::PER_PAGE, page: $this->page);
+
+        $this->tweets->push(...$tweets->items());
+
+        $this->page++;
+
+        $this->hasNextPage = $tweets->hasMorePages();
+    }
+
+    public function hydrateTweets(): void
+    {
+        $this->tweets
+            ->loadCount(['likes', 'replies'])
+            ->load([
+                'user',
+                'likes' => fn($query) => $query->where('user_id', auth()->id())
+            ]);
+    }
+
+    public function follow(User $user): void
     {
         auth()->user()->followings()->attach($user);
 
         session()->flash('success', "User $user->username followed successfully");
     }
 
-    public function createTweet()
+    public function createTweet(): void
     {
         $this->validate();
 
-        $this->tweet->user_id = auth()->id();
+        $tweet = auth()->user()->tweets()->create([
+            'tweet' => $this->tweet
+        ]);
 
-        $this->tweet->save();
+        $this->tweets->prepend($tweet);
 
-        $this->tweets->prepend($this->tweet);
+        $this->tweet = '';
     }
 
-    public function like($tweetId)
+    public function like($tweetId): void
     {
-        auth()->user()->likedTweets()->create([
+        $like = auth()->user()->likedTweets()->create([
             'tweet_id' => $tweetId
         ]);
+
+        $tweet = $this->tweets->find($tweetId);
+
+        $tweet->likes->push($like);
+
+        $tweet->likes_count++;
     }
 
-    public function dislike($tweetId)
+    public function dislike($tweetId): void
     {
         auth()->user()->likedTweets()->where('tweet_id', $tweetId)->delete();
+
+        $tweet = $this->tweets->find($tweetId);
+
+        $tweet->likes->pop();
+
+        $tweet->likes_count--;
     }
 
-    /**
-     * @return void
-     */
-    public function loadMore(): void
-    {
-        $this->lastTweetId = $this->tweets->last()->id;
-        $this->shouldLoadMore = (bool)Tweet::selectRaw('1')
-            ->where('id', '<', $this->lastTweetId)
-            ->first();
-    }
 
     public function render(): View
     {
-        $users = User::notAuth()->notFollowedBy(auth()->id())->get();
-
-
         return view('livewire.home-component', [
-            'users' => $users,
-            'tweets' => Tweet::query()->withCount('likes', 'replies')
-                ->orderByDesc('id')
-                ->with([
-                    'likes' => fn($query) => $query->where('user_id', auth()->id())
-                ])
-                ->get()
+            'users' => User::notAuth()->notFollowedBy(auth()->id())->paginate(15),
         ]);
     }
 }

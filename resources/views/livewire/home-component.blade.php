@@ -1,6 +1,6 @@
 <div class="grid grid-cols-2">
     <div class="py-4 col-span-1">
-        <div class="max-w-2xl ml-10">
+        <div class="max-w-3xl ml-10">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <form wire:submit.prevent="createTweet">
@@ -12,7 +12,7 @@
                             <div class="w-full">
                                 <label class="hidden" for="tweet"></label>
                                 <textarea
-                                    wire:model="tweet.tweet"
+                                    wire:model="tweet"
                                     class="w-full box-border resize-none text-xl py-5 border-transparent focus:border-transparent focus:ring-0 focus:outline-none overflow-visible"
                                     placeholder="What's happening?" name="tweet" id="tweet"></textarea>
                             </div>
@@ -31,7 +31,7 @@
                 <div>
                     <x-avatar class="w-20 h-20 mr-5" :src="$tweet->user->profile_image_url"/>
                 </div>
-                <div class="flex flex-col">
+                <div class="flex flex-col max-w-lg">
                     <div class="flex justify-start items-start">
                         <p class="font-bold mr-3">{{ $tweet->user->name }}</p>
                         <p class="flex justify-start items-center text-gray-500">
@@ -60,7 +60,7 @@
                              @else wire:click="like({{ $tweet->id }})"
                             @endif>
                             <div class="group-hover:bg-heart-hover p-2 rounded-full transition ease-in">
-                                @if($tweet->likes->count())
+                                @if($tweet->likedByAuthUser())
                                     <x-icon class="w-5 h-5" :src="asset('images/heart-filled.svg')"/>
                                 @else
                                     <x-icon class="w-5 h-5" :src="asset('images/heart.svg')"/>
@@ -82,9 +82,9 @@
             </div>
         @endforelse
 
-        @if($shouldLoadMore)
+        @if($hasNextPage)
             <div class="flex justify-center  items-center mt-5">
-                <button wire:click="loadMore"
+                <button wire:click="loadTweets"
                         class="bg-cyan-500 text-white hover:opacity-90 transition ease-in rounded-full px-3 py-2">
                     {{ __('Load More') }}
                 </button>
