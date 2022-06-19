@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\View\View;
 use App\Models\{Tweet, User};
@@ -32,6 +33,13 @@ class HomeComponent extends Component
     public function loadTweets(): void
     {
         $tweets = Tweet::query()->withCount('likes', 'replies')
+            ->whereHas('user', function (Builder $query) {
+                $query->isAuth()
+                    ->orWhere('is_private', false)
+                    ->orWhereHas('followers', function (Builder $query) {
+                        $query->where('follower_id', auth()->id());
+                    });
+            })
             ->orderByDesc('id')
             ->with([
                 'user',
@@ -102,6 +110,8 @@ class HomeComponent extends Component
 
     public function render(): View
     {
+        $this->emit('replace-tweet-urls-to-links');
+
         return view('livewire.home-component', [
             'users' => User::notAuth()->notFollowedBy(auth()->id())->paginate(15),
         ]);

@@ -12,7 +12,7 @@
                             <div class="w-full">
                                 <label class="hidden" for="tweet"></label>
                                 <textarea
-                                    wire:model="tweet"
+                                    wire:model.lazy="tweet"
                                     class="w-full box-border resize-none text-xl py-5 border-transparent focus:border-transparent focus:ring-0 focus:outline-none overflow-visible"
                                     placeholder="What's happening?" name="tweet" id="tweet"></textarea>
                             </div>
@@ -42,7 +42,7 @@
                         <p>{{ $tweet->created_at->toFormattedDateString() }}</p>
                     </div>
                     <div class="text-lg text-black">
-                        <p>
+                        <p class="tweets-list">
                             {{ $tweet->tweet }}
                         </p>
                     </div>
@@ -129,10 +129,27 @@
 
 </div>
 
-{{--@push('scripts')--}}
-{{--    <script>--}}
-{{--        const tweetText = document.getElementById('tweet')--}}
+@push('scripts')
+    <script>
+        const tweetText = document.getElementById('tweet')
 
-{{--        tweetText.style.height = tweetText.scrollHeight + 'px';--}}
-{{--    </script>--}}
-{{--@endpush--}}
+        tweetText.style.height = tweetText.scrollHeight + 'px';
+
+
+        const replaceUrlsToLinks = () => {
+            const tweets = document.getElementsByClassName('tweets-list');
+
+            for (let i = 0; i < tweets.length; i++) {
+                const tweet = tweets.item(i);
+                tweet.innerHTML = tweet.innerHTML.trim().replace(
+                    /(\b(https?|ftp|file):\/\/[\-A-Z0-9+&@#\/%?=~_|!:,.;]*[\-A-Z09+&@#\/%=~_| ])/img,
+                    '<a target="_blank" class="text-cyan-500 hover:underline " href="$1">$1</a>'
+                );
+            }
+        }
+
+        Livewire.on('replace-tweet-urls-to-links', () => replaceUrlsToLinks())
+
+        window.onload = () => replaceUrlsToLinks();
+    </script>
+@endpush

@@ -91,6 +91,11 @@ class User extends Authenticatable implements MustVerifyEmail
         );
     }
 
+    public function scopeIsAuth(Builder $query): Builder
+    {
+        return $query->where('id', auth()->id());
+    }
+
     public function scopeNotAuth(Builder $query): Builder
     {
         return $query->whereNot('id', auth()->id());
