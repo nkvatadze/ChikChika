@@ -1,21 +1,22 @@
 <nav class="h-full block fixed shadow-md bg-white grid grid-cols-2 grid-rows-3 px-2">
     <div class="col-start-2 row-start-1 row-end-3 col-end-3 flex flex-col justify-start items-end px-10">
         <div class="flex flex-col justify-start items-baseline">
-            <div
-                class="mt-5 ml-4 inline-block rounded-full hover:text-blue-600 hover:bg-blue-50 cursor-pointer transition duration-300 ease-in-out fill-current">
-                <x-application-logo
-                    class="cursor-pointer  w-16 h-16"/>
-            </div>
+            <a href="{{ route('home') }}">
+                <div
+                    class="mt-5 ml-4 inline-block rounded-full hover:text-blue-600 hover:bg-blue-50 cursor-pointer transition duration-300 ease-in-out fill-current">
+                    <x-application-logo class="cursor-pointer  w-16 h-16"/>
+                </div>
+            </a>
 
-            <div
-                class="flex flex-row justify-between items-center mt-3 py-2 rounded-full px-5 ml-2 hover:text-blue-600
+            <a class="text-lg text-ellipsis whitespace-nowrap rounded "
+               href="{{ route('home') }}">
+                <div
+                    class="flex flex-row justify-between items-center mt-3 py-2 rounded-full px-5 ml-2 hover:text-blue-600
                 hover:bg-blue-50 cursor-pointer transition duration-300 ease-in-out text-left">
-                <img src="{{ asset('images/bird-house.png') }}" class="w-10 h-10 mr-1" alt="#">
-                <a class="text-lg text-ellipsis whitespace-nowrap rounded "
-                   href="{{ route('home') }}" data-mdb-ripple="true" data-mdb-ripple-color="primary">
+                    <img src="{{ asset('images/bird-house.png') }}" class="w-10 h-10 mr-1" alt="#">
                     <span>{{ __('Home') }}</span>
-                </a>
-            </div>
+                </div>
+            </a>
         </div>
     </div>
     <div

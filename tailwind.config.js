@@ -11,11 +11,12 @@ module.exports = {
     theme: {
         extend: {
             colors: {
+                'main': "#536571",
                 'heart': {
                     'main': "#ff63ab",
                     'hover': "#F263AB34"
                 },
-                'replies': "#69d6fa",
+                'replies': "#1d9bf01a",
             },
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],

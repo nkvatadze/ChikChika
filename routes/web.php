@@ -17,8 +17,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/home');
 
+require __DIR__ . '/auth.php';
+
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/home', HomeComponent::class)->name('home');
+    Route::get('/{user:username}', [UserController::class, 'show'])->name('users.show');
 
     Route::controller(UserController::class)->prefix('users')->name('users.')
         ->group(function () {
@@ -27,4 +30,3 @@ Route::middleware(['auth', 'verified'])->group(function () {
         });
 });
 
-require __DIR__ . '/auth.php';

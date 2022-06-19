@@ -91,6 +91,14 @@ class User extends Authenticatable implements MustVerifyEmail
         );
     }
 
+    public function hasBeenFollowing($user)
+    {
+        return (bool)$this->whereHas(
+            'followings',
+            fn(Builder $query) => $query->where('user_id', $user->id)
+        )->first();
+    }
+
     public function scopeIsAuth(Builder $query): Builder
     {
         return $query->where('id', auth()->id());
