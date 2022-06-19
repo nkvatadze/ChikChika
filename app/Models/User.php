@@ -47,6 +47,10 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+    protected $appends = [
+        'profile_image_url'
+    ];
+
     /**
      * @return BelongsToMany
      */
@@ -65,6 +69,12 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany(User::class, 'follower_user', 'user_id', 'follower_id')
             ->using(FollowerUser::class)
             ->withPivot('created_at');
+    }
+
+    public function followedByAuth(): BelongsToMany
+    {
+        return $this->followers()
+            ->wherePivot('follower_id', auth()->id());
     }
 
     /**
@@ -91,7 +101,7 @@ class User extends Authenticatable implements MustVerifyEmail
         );
     }
 
-    public function hasBeenFollowing($user)
+    public function hasBeenFollowing($user): bool
     {
         return (bool)$this->whereHas(
             'followings',

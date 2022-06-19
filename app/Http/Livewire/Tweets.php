@@ -12,21 +12,16 @@ class Tweets extends Component
 {
     const PER_PAGE = 5;
 
-    public string $tweet;
     public ?int $tweetsByUserId = null;
     public int $page = 1;
     public bool $hasNextPage;
     public EloquentCollection $tweets;
 
-    protected $rules = [
-        'tweet' => 'required|string|min:1|max:140'
-    ];
+    protected $listeners = ['createTweet'];
 
     public function mount(?int $tweetsByUserId = null): void
     {
         $this->tweetsByUserId = $tweetsByUserId;
-
-        $this->tweet = '';
 
         $this->tweets = new EloquentCollection();
 
@@ -75,17 +70,13 @@ class Tweets extends Component
             ]);
     }
 
-    public function createTweet(): void
+    public function createTweet(string $tweet): void
     {
-        $this->validate();
-
         $tweet = auth()->user()->tweets()->create([
-            'tweet' => $this->tweet
+            'tweet' => $tweet
         ]);
 
         $this->tweets->prepend($tweet);
-
-        $this->tweet = '';
     }
 
     public function like($tweetId): void

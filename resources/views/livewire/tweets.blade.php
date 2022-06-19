@@ -1,6 +1,7 @@
 <div>
     @forelse($tweets as $tweet)
-        <div class="ml-10 p-6 flex justify-start items-start bg-white border-b border-gray-200">
+        <div
+            class="ml-10 hover:bg-gray-100 cursor-pointer p-6 flex justify-start items-start bg-white border-b border-gray-300">
             <div>
                 <x-avatar class="w-20 h-20 mr-5" :src="$tweet->user->profile_image_url"/>
             </div>
@@ -29,19 +30,21 @@
                         @endif
                     </div>
                     <div class="flex justify-start items-center cursor-pointer group"
-                         @if($tweet->likedByAuthUser()) wire:click="dislike({{ $tweet->id }})"
-                         @else wire:click="like({{ $tweet->id }})"
+                         @if($tweet->liked_by_auth_user) wire:click.self="dislike({{ $tweet->id }})"
+                         @else wire:click.self="like({{ $tweet->id }})"
                         @endif>
-                        <div class="group-hover:bg-heart-hover p-2 rounded-full transition ease-in">
-                            @if($tweet->likedByAuthUser())
-                                <x-icon class="w-5 h-5" :src="asset('images/heart-filled.svg')"/>
-                            @else
-                                <x-icon class="w-5 h-5" :src="asset('images/heart.svg')"/>
-                            @endif
-                        </div>
+                        @if($tweet->liked_by_auth_user)
+                            <i class="fa-solid fa-heart group-hover:bg-heart-hover group-hover:text-heart-main p-2
+                            rounded-full transition ease-in text-heart-main text-xl">
+                            </i>
+                        @else
+                            <i class="fa-regular fa-heart group-hover:bg-heart-hover group-hover:text-heart-main p-2
+                            rounded-full transition ease-in text-gray-500 text-xl">
+                            </i>
+                        @endif
                         @if($tweet->likes_count)
                             <span
-                                class="text-sm ml-2 mt-1 group-hover:text-heart-main">{{ $tweet->likes_count }}</span>
+                                class="text-sm @if($tweet->liked_by_auth_user) text-heart-main @endif ml-2 mt-1 group-hover:text-heart-main">{{ $tweet->likes_count }}</span>
                         @endif
                     </div>
                 </div>

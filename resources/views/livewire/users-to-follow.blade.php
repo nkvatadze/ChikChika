@@ -8,22 +8,32 @@
             @forelse($users as $user)
                 <div
                     class="w-full flex justify-between items-center my-2 hover:bg-gray-100 rounded cursor-pointer px-5 py-2">
-                    <a href="{{ route('users.show', ['user'=>$user->username]) }}" class="w-full">
+                    <a href="{{ route('users.show', ['user'=>$user['username']]) }}" class="w-full">
 
                         <div class="flex justify-start items-start ">
-                            <x-avatar class="w-10 h-10 mr-5" :src="$user->profile_image_url"/>
+                            <x-avatar class="w-10 h-10 mr-5" :src="$user['profile_image_url']"/>
                             <div class="flex flex-col">
-                                <p class="font-bold hover:underline">{{ $user->name }}</p>
-                                <p><span>@</span>{{ $user->username }}</p>
+                                <p class="font-bold hover:underline">{{ $user['name'] }}</p>
+                                <p><span>@</span>{{ $user['username'] }}</p>
                             </div>
                         </div>
                     </a>
 
                     <div>
-                        <button wire:click="follow({{ $user->id }})"
-                                class="bg-black hover:opacity-75 transition ease-in px-3 py-1 rounded-full text-white">
-                            {{ __('Follow') }}
-                        </button>
+                        @if($user->followedByAuth->isNotEmpty())
+                            <button wire:click="unfollow({{ $user['id'] }})"
+                                    onmouseover="changeText(this, 'Unfollow')"
+                                    onmouseout="changeText(this, 'Following')"
+                                    class="bg-white text-black border border-gray-600 hover:bg-heart-hover hover:text-red-700
+                                     transition ease-in px-3 py-1 rounded-full w-24">
+                                {{ __('Following') }}
+                            </button>
+                        @else
+                            <button wire:click="follow({{ $user['id'] }})"
+                                    class="bg-black hover:opacity-75 transition ease-in px-3 py-1 rounded-full text-white">
+                                {{ __('Follow') }}
+                            </button>
+                        @endif
                     </div>
                 </div>
 
@@ -37,3 +47,9 @@
         </div>
     </div>
 </div>
+
+@push('scripts')
+    <script>
+        const changeText = (e, text) => e.innerHTML = text;
+    </script>
+@endpush

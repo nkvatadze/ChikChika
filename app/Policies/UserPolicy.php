@@ -10,8 +10,8 @@ class UserPolicy
 {
     use HandlesAuthorization;
 
-    public function view(User $user)
+    public function view(User $authUser, User $user)
     {
-        return !$user->is_private || auth()->user()->hasBeenFollowing($user);
+        return !$user->is_private || $authUser->hasBeenFollowing($user);
     }
 }

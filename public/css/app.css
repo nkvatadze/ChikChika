@@ -741,26 +741,11 @@ select {
 .left-0 {
   left: 0px;
 }
-.top-1\/2 {
-  top: 50%;
-}
-.left-8 {
-  left: 2rem;
-}
-.right-8 {
-  right: 2rem;
-}
-.top-1\/3 {
-  top: 33.333333%;
-}
 .z-0 {
   z-index: 0;
 }
 .z-50 {
   z-index: 50;
-}
-.z-30 {
-  z-index: 30;
 }
 .col-span-1 {
   grid-column: span 1 / span 1;
@@ -773,9 +758,6 @@ select {
 }
 .col-start-2 {
   grid-column-start: 2;
-}
-.col-start-1 {
-  grid-column-start: 1;
 }
 .col-end-3 {
   grid-column-end: 3;
@@ -794,9 +776,6 @@ select {
 }
 .m-10 {
   margin: 2.5rem;
-}
-.m-auto {
-  margin: auto;
 }
 .mx-auto {
   margin-left: auto;
@@ -892,17 +871,8 @@ select {
 .ml-5 {
   margin-left: 1.25rem;
 }
-.mt-7 {
-  margin-top: 1.75rem;
-}
 .mt-20 {
   margin-top: 5rem;
-}
-.ml-6 {
-  margin-left: 1.5rem;
-}
-.ml-11 {
-  margin-left: 2.75rem;
 }
 .box-border {
   box-sizing: border-box;
@@ -912,6 +882,9 @@ select {
 }
 .inline-block {
   display: inline-block;
+}
+.inline {
+  display: inline;
 }
 .flex {
   display: flex;
@@ -994,23 +967,20 @@ select {
 .w-1 {
   width: 0.25rem;
 }
-.w-40 {
-  width: 10rem;
-}
-.w-1\/4 {
-  width: 25%;
-}
-.w-1\/6 {
-  width: 16.666667%;
-}
-.w-1\/3 {
-  width: 33.333333%;
-}
 .w-3\/5 {
   width: 60%;
 }
-.w-2\/5 {
-  width: 40%;
+.w-40 {
+  width: 10rem;
+}
+.w-60 {
+  width: 15rem;
+}
+.w-32 {
+  width: 8rem;
+}
+.w-24 {
+  width: 6rem;
 }
 .max-w-7xl {
   max-width: 80rem;
@@ -1029,9 +999,6 @@ select {
 }
 .max-w-2xl {
   max-width: 42rem;
-}
-.max-w-md {
-  max-width: 28rem;
 }
 .flex-1 {
   flex: 1 1 0%;
@@ -1216,6 +1183,14 @@ select {
   --tw-border-opacity: 1;
   border-color: rgb(129 140 248 / var(--tw-border-opacity));
 }
+.border-black {
+  --tw-border-opacity: 1;
+  border-color: rgb(0 0 0 / var(--tw-border-opacity));
+}
+.border-gray-600 {
+  --tw-border-opacity: 1;
+  border-color: rgb(75 85 99 / var(--tw-border-opacity));
+}
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
@@ -1247,6 +1222,10 @@ select {
 .bg-gray-800 {
   --tw-bg-opacity: 1;
   background-color: rgb(31 41 55 / var(--tw-bg-opacity));
+}
+.bg-gray-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(229 231 235 / var(--tw-bg-opacity));
 }
 .fill-current {
   fill: currentColor;
@@ -1333,6 +1312,12 @@ select {
 .pr-4 {
   padding-right: 1rem;
 }
+.pt-2 {
+  padding-top: 0.5rem;
+}
+.pb-1 {
+  padding-bottom: 0.25rem;
+}
 .text-left {
   text-align: left;
 }
@@ -1361,6 +1346,10 @@ select {
   font-size: 1.125rem;
   line-height: 1.75rem;
 }
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
 .text-base {
   font-size: 1rem;
   line-height: 1.5rem;
@@ -1368,14 +1357,6 @@ select {
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
-}
-.text-4xl {
-  font-size: 2.25rem;
-  line-height: 2.5rem;
-}
-.text-3xl {
-  font-size: 1.875rem;
-  line-height: 2.25rem;
 }
 .font-medium {
   font-weight: 500;
@@ -1478,6 +1459,13 @@ select {
 .text-cyan-500 {
   --tw-text-opacity: 1;
   color: rgb(6 182 212 / var(--tw-text-opacity));
+}
+.text-heart-hover {
+  color: #F263AB34;
+}
+.text-heart-main {
+  --tw-text-opacity: 1;
+  color: rgb(255 99 171 / var(--tw-text-opacity));
 }
 .underline {
   -webkit-text-decoration-line: underline;
@@ -1623,6 +1611,13 @@ input[type="checkbox"]:focus {
   --tw-bg-opacity: 1;
   background-color: rgb(55 65 81 / var(--tw-bg-opacity));
 }
+.hover\:bg-heart-main:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 99 171 / var(--tw-bg-opacity));
+}
+.hover\:bg-heart-hover:hover {
+  background-color: #F263AB34;
+}
 .hover\:text-gray-500:hover {
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity));
@@ -1647,6 +1642,18 @@ input[type="checkbox"]:focus {
   --tw-text-opacity: 1;
   color: rgb(31 41 55 / var(--tw-text-opacity));
 }
+.hover\:text-heart-main:hover {
+  --tw-text-opacity: 1;
+  color: rgb(255 99 171 / var(--tw-text-opacity));
+}
+.hover\:text-red-600:hover {
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity));
+}
+.hover\:text-red-700:hover {
+  --tw-text-opacity: 1;
+  color: rgb(185 28 28 / var(--tw-text-opacity));
+}
 .hover\:underline:hover {
   -webkit-text-decoration-line: underline;
           text-decoration-line: underline;
@@ -1659,9 +1666,6 @@ input[type="checkbox"]:focus {
 }
 .hover\:opacity-90:hover {
   opacity: 0.9;
-}
-.hover\:opacity-10:hover {
-  opacity: 0.1;
 }
 .focus\:z-10:focus {
   z-index: 10;
