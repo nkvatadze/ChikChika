@@ -7,7 +7,7 @@
         <div class="col-span-2">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="px-6 pt-6 pb-3 bg-white border-b border-gray-200">
-                    <form method="POST" action="{{ route('users.update') }}">
+                    <form method="POST" action="{{ route('users.update') }}" enctype="multipart/form-data">
                         @csrf
                         @method('PATCH')
                         <div class="flex justify-start items-center mb-5">
@@ -43,7 +43,7 @@
                             @enderror
                         </div>
                         <hr>
-                        <div class="grid grid-cols-3 justify-start items-center mt-5">
+                        <div class="grid grid-cols-3 justify-start items-center mt-5 mb-5">
                             <label class="col-span-1 text-lg mr-5" for="username">
                                 {{ __('Username') }}
                             </label>
@@ -57,6 +57,24 @@
                             @error('username')
                             <div class="italic text-red-600 text-sm mt-2">{{ $message }}</div>
                             @enderror
+                        </div>
+                        <hr>
+                        <div class="grid grid-cols-3 justify-start items-center mt-5">
+                            <label class="col-span-1 text-lg mr-5" for="username">
+                                {{ __('Profile Image') }}
+                            </label>
+
+                            <input type="file" name="profile_image"
+                                   class="col-span-2 w-full px-3 py-1 @error('profile_image') border-2 border-red-400 @else border-gray-400 @enderror w-1/2 rounded"
+                                   id="profile_image">
+                        </div>
+                        <div class="ml-10">
+                            @error('profile_image')
+                            <div class="italic text-red-600 text-sm mt-2">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="w-1/5 mt-5 rounded">
+                            <img class="rounded" src="{{ auth()->user()->profile_image_url }}" alt="">
                         </div>
                         <div class="text-right mt-2">
                             <button class="bg-cyan-500 text-white py-1 px-3 rounded text-md hover:bg-cyan-600"

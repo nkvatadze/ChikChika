@@ -3,7 +3,9 @@
         <div
             class="ml-10 hover:bg-gray-100 cursor-pointer p-6 flex justify-start items-start bg-white border-b border-gray-300">
             <div>
-                <x-avatar class="w-20 h-20 mr-5" :src="$tweet->user->profile_image_url"/>
+                <a href="{{ route('users.show', ['user'=>$tweet->user->username]) }}">
+                    <x-avatar class="w-20 h-20 mr-5" :src="$tweet->user->profile_image_url"/>
+                </a>
             </div>
             <div class="flex flex-col max-w-lg">
                 <div class="flex justify-start items-start">
@@ -30,8 +32,8 @@
                         @endif
                     </div>
                     <div class="flex justify-start items-center cursor-pointer group"
-                         @if($tweet->liked_by_auth_user) wire:click.self="dislike({{ $tweet->id }})"
-                         @else wire:click.self="like({{ $tweet->id }})"
+                         @if($tweet->liked_by_auth_user) wire:click="dislike({{ $tweet->id }})"
+                         @else wire:click="like({{ $tweet->id }})"
                         @endif>
                         @if($tweet->liked_by_auth_user)
                             <i class="fa-solid fa-heart group-hover:bg-heart-hover group-hover:text-heart-main p-2

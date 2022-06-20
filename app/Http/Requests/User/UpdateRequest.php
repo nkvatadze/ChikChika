@@ -26,7 +26,8 @@ class UpdateRequest extends FormRequest
         return [
             'is_private' => 'sometimes',
             'name' => 'sometimes|string',
-            'username' => 'sometimes|alpha_dash|unique:users,username,' . auth()->id()
+            'username' => 'sometimes|alpha_dash|unique:users,username,' . auth()->id(),
+            'profile_image' => 'sometimes|image'
         ];
     }
 }

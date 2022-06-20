@@ -24,7 +24,7 @@
                 </div>
             </div>
 
-            @if(!auth()->user()->hasBeenFollowing($user))
+            @if(!auth()->user()->is($user) && !auth()->user()->hasBeenFollowing($user))
                 <div class="mr-5">
                     <button wire:click="follow({{ $user->id }})"
                             class="bg-black hover:opacity-75 transition ease-in px-3 py-1 rounded-full text-white text-lg">
