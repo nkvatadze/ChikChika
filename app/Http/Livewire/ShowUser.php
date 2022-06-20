@@ -11,9 +11,18 @@ class ShowUser extends Component
     public User $user;
     public bool $isRestricted = false;
 
+    protected $listeners = ['followToggle'];
+
     public function mount(User $user): void
     {
         $this->user = $user;
+    }
+
+    public function followToggle(User $user)
+    {
+        if ($this->user->is($user)) {
+            $this->render();
+        }
     }
 
     public function render(): View
@@ -23,7 +32,7 @@ class ShowUser extends Component
             $this->isRestricted = true;
         }
 
-        $this->user->loadCount('followings', 'followers');
+        $this->user->loadCount('followings', 'followers', 'followedByAuth');
 
         return view('livewire.show-user');
     }

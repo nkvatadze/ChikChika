@@ -10,6 +10,8 @@ class UsersToFollow extends Component
 {
     public EloquentCollection $users;
 
+    protected $listeners = ['follow', 'unfollow'];
+
     public function mount()
     {
         $this->users = new EloquentCollection();
@@ -23,6 +25,7 @@ class UsersToFollow extends Component
     {
         auth()->user()->followings()->attach($user);
 
+        $this->emitUp('followToggle', $user);
 
         session()->flash('success', "User $user->username followed successfully");
     }
@@ -30,6 +33,8 @@ class UsersToFollow extends Component
     public function unfollow(User $user): void
     {
         auth()->user()->followings()->detach($user);
+
+        $this->emitUp('followToggle', $user);
 
         session()->flash('success', "User $user->username unfollowed successfully");
     }
