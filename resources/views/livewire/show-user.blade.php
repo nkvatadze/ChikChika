@@ -7,16 +7,18 @@
                 <div class="px-4 mt-5">
                     <p class="font-bold text-lg">{{ $user->name }}</p>
                     <p class="text-md text-gray-500">{{ $user->username }}</p>
+                    <p class="text-md my-5">{{ $user->bio }}</p>
                     <div class="flex justify-start items-center mt-2 mr-5 inline">
                         <span><i class="fa-solid fa-calendar-days text-gray-600 mr-2 text-lg"></i></span>
                         <span class="text-gray-500">{{ __('Joined') }} {{ $user->created_at->format('F Y') }}</span>
                     </div>
                     <div class="mt-3">
-                        <a href="#" class="hover:underline mr-5">
+                        <a href="{{ route('users.followings', ['user'=>$user->username]) }}"
+                           class="hover:underline mr-5">
                             <span class="font-bold">{{ $user->followings_count }}</span>
                             <span class="text-gray-500">{{ __('Followings') }}</span>
                         </a>
-                        <a href="#" class="hover:underline">
+                        <a href="{{ route('users.followers', ['user'=>$user->username]) }}" class="hover:underline">
                             <span class="font-bold">{{ $user->followers_count }}</span>
                             <span class="text-gray-500">{{ __('Followers') }}</span>
                         </a>

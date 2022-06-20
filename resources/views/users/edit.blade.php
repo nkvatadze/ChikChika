@@ -59,6 +59,21 @@
                             @enderror
                         </div>
                         <hr>
+                        <div class="grid grid-cols-3 justify-start items-center mt-5 mb-5">
+                            <label class="col-span-1 text-lg mr-5" for="username">
+                                {{ __('Bio') }}
+                            </label>
+
+                            <textarea name="bio" rows="3" id="bio" class="col-span-2 w-full px-3 py-1 @error('username') border-2
+                            border-red-400 @else border-gray-400 @enderror w-1/2 rounded">{{ auth()->user()->bio }}</textarea>
+
+                        </div>
+                        <div class="ml-10">
+                            @error('bio')
+                            <div class="italic text-red-600 text-sm mt-2">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <hr>
                         <div class="grid grid-cols-3 justify-start items-center mt-5">
                             <label class="col-span-1 text-lg mr-5" for="username">
                                 {{ __('Profile Image') }}
