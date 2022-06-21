@@ -50,6 +50,10 @@ class Tweets extends Component
                             )
                     )
             )
+            ->where(function ($query) {
+                $query->where('user_id', auth()->id())
+                    ->orWhereIn('user_id', auth()->user()->followings()->pluck('users.id'));
+            })
             ->orderByDesc('id')
             ->paginate(self::PER_PAGE, page: $this->page);
 

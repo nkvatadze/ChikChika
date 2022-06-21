@@ -6,15 +6,8 @@ use App\Models\User;
 use Illuminate\View\View;
 use Livewire\Component;
 
-class Followings extends Component
+class Followings extends FollowBaseClass
 {
-    public User $user;
-
-    public function mount(User $user): void
-    {
-        $this->user = $user;
-    }
-
     public function render(): View
     {
         $this->user->load('followings');

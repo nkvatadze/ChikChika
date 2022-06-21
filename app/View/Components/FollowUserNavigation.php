@@ -12,7 +12,7 @@ class FollowUserNavigation extends Component
      *
      * @return void
      */
-    public function __construct(public User $user)
+    public function __construct(public User $user, public string $currentUrl)
     {
         //
     }

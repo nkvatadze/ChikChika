@@ -1,7 +1,7 @@
 <div>
     @forelse($tweets as $tweet)
         <div
-            class="ml-10 hover:bg-gray-100 cursor-pointer p-6 flex justify-start items-start bg-white border-b border-gray-300">
+            class="ml-10 hover:bg-gray-50 cursor-pointer p-6 flex justify-start items-start bg-white border-b border-gray-300">
             <div>
                 <a href="{{ route('users.show', ['user'=>$tweet->user->username]) }}">
                     <x-avatar class="w-20 h-20 mr-5" :src="$tweet->user->profile_image_url"/>
