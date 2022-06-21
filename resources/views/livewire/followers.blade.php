@@ -51,9 +51,6 @@
     </div>
 
     <div class="col-span-1">
-        <div>
-            <input type="text" name="search" id="search">
-        </div>
         <livewire:users-to-follow/>
     </div>
 </div>

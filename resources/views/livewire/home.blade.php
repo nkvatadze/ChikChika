@@ -1,3 +1,7 @@
+<x-slot:header>
+    <p class="text-black text-xl">{{ __('Home') }}</p>
+</x-slot:header>
+
 <div class="grid grid-cols-2">
     <div class="py-4 col-span-1">
         <div class="max-w-3xl ml-10">

@@ -1,6 +1,11 @@
+<x-slot:header>
+    <p class="font-bold text-lg">{{ $user->name }}</p>
+    <p class="text-md text-gray-500">{{ $user->username }}</p>
+</x-slot:header>
+
 <div class="grid grid-cols-2 mt-5">
     <div class="col-span-1">
-        <div class="ml-10 bg-white border-b border-gray-200 flex justify-between items-center">
+        <div class="ml-10 bg-white border-b border-gray-200 rounded-t-md flex justify-between items-center">
             <div class="mb-4 p-6 flex flex-col justify-start items-start ">
                 <x-avatar class="w-20 h-20 mr-5" :src="$user->profile_image_url"/>
                 <hr>

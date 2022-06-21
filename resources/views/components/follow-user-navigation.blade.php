@@ -1,7 +1,10 @@
-<div class="p-3">
-    <span class="block font-bold text-lg">{{ $user->name }}</span>
-    <span class="text-gray-500"><span>@</span>{{ $user->username }}</span>
-</div>
+<x-slot:header>
+    <div>
+        <span class="block font-bold text-lg">{{ $user->name }}</span>
+        <span class="text-gray-500"><span>@</span>{{ $user->username }}</span>
+    </div>
+</x-slot:header>
+
 <div class="grid grid-cols-2 mt-5 text-md text-gray-500 font-bold text-center border-b border-gray-200">
     <a class="{{ $currentUrl === route('users.followers', ['user'=>$user->username]) ? 'text-black font-bold' : '' }}"
        href="{{ route('users.followers', ['user'=>$user->username]) }}">

@@ -1,4 +1,4 @@
-<nav class="h-full block fixed shadow-md bg-white grid grid-cols-2 grid-rows-3 px-2">
+<nav class="h-full w-full max-w-lg block grid grid-cols-2 grid-rows-3  fixed shadow-md bg-white px-2">
     <div class="col-start-2 row-start-1 row-end-3 col-end-3 flex flex-col justify-start items-end px-10">
         <div class="flex flex-col justify-start items-baseline">
             <a href="{{ route('home') }}">

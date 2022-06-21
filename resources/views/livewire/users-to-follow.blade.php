@@ -1,5 +1,5 @@
 <div class="w-3/4 ml-10">
-    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+    <div class="sticky-top  bg-white overflow-hidden shadow-sm sm:rounded-lg">
         <h1 class="text-2xl text-center text-gray-500">{{ __('Who to follow') }}</h1>
 
         <div class="flex flex-col justify-center items-start">

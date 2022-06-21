@@ -1,9 +1,9 @@
-<div class="grid grid-cols-2 mt-5">
+<div class="grid grid-cols-2 items-start mt-5">
 
     <div class="col-span-1 ml-10 bg-white border-b border-gray-200">
         <x-follow-user-navigation :user="$user" :currentUrl="$currentUrl"/>
 
-        <div class="h-screen">
+        <div class="pb-5">
             @forelse($user->followings as $following)
                 <div
                     class="w-full border-b border-gray-200 flex justify-between items-center my-2 hover:bg-gray-100 rounded cursor-pointer px-5 py-2">
@@ -49,7 +49,7 @@
         </div>
     </div>
 
-    <div class="col-span-1">
+    <div class="col-span-1 sticky top-0 self-start">
         <livewire:users-to-follow/>
     </div>
 </div>

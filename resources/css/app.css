@@ -23,6 +23,7 @@ input[type="checkbox"]:focus {
     }
 }
 
-/*.filter-heart {*/
-/*    filter: invert(65%) sepia(87%) saturate(3378%) hue-rotate(300deg) brightness(103%) contrast(101%);*/
-/*}*/
+.search-icon {
+    background: url("../images/search-icon.png") no-repeat scroll 7px 7px;
+    padding-left:30px;
+}
