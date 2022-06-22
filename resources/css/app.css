@@ -25,5 +25,5 @@ input[type="checkbox"]:focus {
 
 .search-icon {
     background: url("../images/search-icon.png") no-repeat scroll 7px 7px;
-    padding-left:30px;
+    padding-left:2.5rem;
 }

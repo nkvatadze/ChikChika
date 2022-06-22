@@ -30,9 +30,7 @@
         @if(isset($header))
             <header class="fixed bg-white w-full top-0 h-20 z-50 border-l border-gray-100 px-14 py-4">
                 {{ $header }}
-                <div class="fixed top-5 right-20 w-1/4 ">
-                    <input class="search-icon rounded-full w-3/5" type="text" name="search" id="search">
-                </div>
+                <livewire:search/>
             </header>
         @endif
         <main class="col-span-3 @if(isset($header)) mt-24 @endif">
