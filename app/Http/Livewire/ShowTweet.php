@@ -20,7 +20,7 @@ class ShowTweet extends Component
     {
         $this->tweet = $tweet;
         $this->content = '';
-        $this->tweet->load('user',);
+        $this->tweet->load('user');
     }
 
     public function like(): void
@@ -60,7 +60,7 @@ class ShowTweet extends Component
     public function render(): View
     {
         $this->tweet->loadCount('replies', 'likes')->load([
-            'replies',
+            'replies' => fn($query) => $query->orderBy('id', 'DESC'),
             'replies.user',
             'likes' => fn($query) => $query->where('user_id', auth()->id())
         ]);
