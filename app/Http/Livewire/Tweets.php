@@ -38,22 +38,11 @@ class Tweets extends Component
             ->when(
                 $this->tweetsByUserId,
                 fn(Builder $query) => $query->where('user_id', $this->tweetsByUserId),
-                fn(Builder $query) => $query
-                    ->whereHas(
-                        'user',
-                        fn(Builder $query) => $query
-                            ->isAuth()
-                            ->orWhere('is_private', false)
-                            ->orWhereHas(
-                                'followers',
-                                fn(Builder $query) => $query->where('follower_id', auth()->id())
-                            )
-                    )
+                fn(Builder $query) => $query->where(function (Builder $query) {
+                    $query->whereHas('user.followers', fn(Builder $query) => $query->where('follower_id', auth()->id()))
+                        ->orWhere('user_id', auth()->id());
+                })
             )
-            ->where(function ($query) {
-                $query->where('user_id', auth()->id())
-                    ->orWhereIn('user_id', auth()->user()->followings()->pluck('users.id'));
-            })
             ->orderByDesc('id')
             ->paginate(self::PER_PAGE, page: $this->page);
 

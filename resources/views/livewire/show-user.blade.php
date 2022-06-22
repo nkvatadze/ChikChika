@@ -31,24 +31,26 @@
                 </div>
             </div>
 
-            @if(!auth()->user()->is($user))
-                <div class="mr-5">
-                    @if($user->followedByAuth->isNotEmpty())
-                        <button wire:click="$emitTo('users-to-follow', 'unfollow', {{ $user['id'] }})"
-                                onmouseover="changeText(this, 'Unfollow')"
-                                onmouseout="changeText(this, 'Following')"
-                                class="bg-white text-black border border-gray-600 hover:bg-heart-hover hover:text-red-700
+            @auth
+                @if(!auth()->user()->is($user))
+                    <div class="mr-5">
+                        @if($user->followedByAuth->isNotEmpty())
+                            <button wire:click="$emitTo('users-to-follow', 'unfollow', {{ $user['id'] }})"
+                                    onmouseover="changeText(this, 'Unfollow')"
+                                    onmouseout="changeText(this, 'Following')"
+                                    class="bg-white text-black border border-gray-600 hover:bg-heart-hover hover:text-red-700
                                      transition ease-in px-3 py-1 rounded-full w-24">
-                            {{ __('Following') }}
-                        </button>
-                    @else
-                        <button wire:click="$emitTo('users-to-follow', 'follow', {{ $user['id'] }})"
-                                class="bg-black hover:opacity-75 transition ease-in px-3 py-1 rounded-full text-white">
-                            {{ __('Follow') }}
-                        </button>
-                    @endif
-                </div>
-            @endif
+                                {{ __('Following') }}
+                            </button>
+                        @else
+                            <button wire:click="$emitTo('users-to-follow', 'follow', {{ $user['id'] }})"
+                                    class="bg-black hover:opacity-75 transition ease-in px-3 py-1 rounded-full text-white">
+                                {{ __('Follow') }}
+                            </button>
+                        @endif
+                    </div>
+                @endif
+            @endauth
         </div>
         @if(!$isRestricted)
             <livewire:tweets :tweetsByUserId="$user->id"/>
@@ -61,7 +63,9 @@
             </div>
         @endif
     </div>
-    <div class="col-span-1">
-        <livewire:users-to-follow/>
-    </div>
+    @auth
+        <div class="col-span-1">
+            <livewire:users-to-follow/>
+        </div>
+    @endauth
 </div>

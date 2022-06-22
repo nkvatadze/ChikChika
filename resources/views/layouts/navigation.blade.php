@@ -19,31 +19,33 @@
             </a>
         </div>
     </div>
-    <div
-        class="col-start-2 col-end-3 row-start-3 flex flex-col justify-end items-end px-10 py-10 mt-3">
-        <a class="text-lg text-ellipsis whitespace-nowrap rounded "
-           href="{{ route('users.edit') }}" data-mdb-ripple="true" data-mdb-ripple-color="primary">
-            <div
-                class="flex flex-row justify-between items-center mt-3 py-2 rounded-full px-5 ml-2 hover:text-blue-600
+    @auth
+        <div
+            class="col-start-2 col-end-3 row-start-3 flex flex-col justify-end items-end px-10 py-10 mt-3">
+            <a class="text-lg text-ellipsis whitespace-nowrap rounded "
+               href="{{ route('users.edit') }}" data-mdb-ripple="true" data-mdb-ripple-color="primary">
+                <div
+                    class="flex flex-row justify-between items-center mt-3 py-2 rounded-full px-5 ml-2 hover:text-blue-600
                 hover:bg-blue-50 cursor-pointer transition duration-300 ease-in-out">
-                <img src="{{ asset('images/settings.png') }}" class="w-10 h-10" alt="#">
+                    <img src="{{ asset('images/settings.png') }}" class="w-10 h-10" alt="#">
 
-                <span>{{ __('Settings') }}</span>
-            </div>
-        </a>
+                    <span>{{ __('Settings') }}</span>
+                </div>
+            </a>
 
-        <div class="">
-            <form method="POST" action="{{ route('logout') }}">
-                @csrf
-                <button
-                    class="flex flex-row justify-between items-center text-lg text-gray-700 text-ellipsis whitespace-nowrap py-2 px-5 rounded-full hover:text-blue-600
+            <div class="">
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button
+                        class="flex flex-row justify-between items-center text-lg text-gray-700 text-ellipsis whitespace-nowrap py-2 px-5 rounded-full hover:text-blue-600
                 hover:bg-blue-50 cursor-pointer transition duration-300 ease-in-out"
-                    type="submit">
-                    <img src="{{ asset('images/logout.png') }}" class="w-8 h-8" alt="#">
-                    <span>{{ __('Logout') }}</span>
-                </button>
+                        type="submit">
+                        <img src="{{ asset('images/logout.png') }}" class="w-8 h-8" alt="#">
+                        <span>{{ __('Logout') }}</span>
+                    </button>
 
-            </form>
+                </form>
+            </div>
         </div>
-    </div>
+    @endauth
 </nav>

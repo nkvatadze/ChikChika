@@ -20,14 +20,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::redirect('/', '/home');
 
 require __DIR__ . '/auth.php';
 
 Route::middleware(['auth', 'verified'])->group(function () {
+    Route::redirect('/', '/home');
     Route::get('/home', Home::class)->name('home');
-    Route::get('/tweets/{tweet}', ShowTweet::class)->name('tweets.show');
-    Route::get('/{user:username}', ShowUser::class)->name('users.show');
     Route::get('/{user:username}/followers', Followers::class)->name('users.followers');
     Route::get('/{user:username}/followings', Followings::class)->name('users.followings');
 
@@ -37,4 +35,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::patch('/', 'update')->name('update');
         });
 });
+
+Route::get('/{user:username}', ShowUser::class)->name('users.show');
+Route::get('/tweets/{tweet}', ShowTweet::class)->name('tweets.show');
 

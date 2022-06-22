@@ -6,7 +6,9 @@
     <div class="col-span-1">
         <div class="ml-10 px-8 pb-6 bg-white border-b border-gray-200 rounded-t-md">
             <div class="py-6 flex justify-start items-start ">
-                <x-avatar class="w-20 h-20 mr-5" :src="$tweet->user->profile_image_url"/>
+                <a href="{{ route('users.show', ['user'=>$tweet->user->username]) }}">
+                    <x-avatar class="w-20 h-20 mr-5" :src="$tweet->user->profile_image_url"/>
+                </a>
                 <div class="px-4">
                     <p class="font-bold text-lg">{{ $tweet->user->name }}</p>
                     <p class="text-md text-gray-500"><span>@</span>{{ $tweet->user->username }}</p>

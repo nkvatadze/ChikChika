@@ -8,7 +8,7 @@
                 <div class="flex justify-start items-center hover:bg-gray-100 p-5">
                     <a href="{{ route('users.show', ['user'=>$user['username']]) }}" class="w-full">
 
-                        <div class="flex justify-center items-center">
+                        <div class="flex justify-start items-center">
                             <x-avatar class="w-16  h-16 mr-5" :src="$user['profile_image_url']"/>
                             <div class="flex flex-col">
                                 <p class="font-bold hover:underline">{{ $user['name'] }}</p>
