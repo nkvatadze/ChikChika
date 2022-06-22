@@ -27,3 +27,12 @@ input[type="checkbox"]:focus {
     background: url("../images/search-icon.png") no-repeat scroll 7px 7px;
     padding-left:2.5rem;
 }
+
+.dot{
+    display: block;
+    height: 3px;
+    width: 3px;
+    border-radius: 9999px;
+    --tw-bg-opacity: 1;
+    background-color: rgb(107 114 128 / var(--tw-bg-opacity));
+}

@@ -77,7 +77,7 @@ class Tweets extends Component
     public function createTweet(string $tweet): void
     {
         $tweet = auth()->user()->tweets()->create([
-            'tweet' => $tweet
+            'content' => $tweet
         ]);
 
         $this->tweets->prepend($tweet);

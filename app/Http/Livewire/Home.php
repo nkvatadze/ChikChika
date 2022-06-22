@@ -8,19 +8,19 @@ use Livewire\Component;
 
 class Home extends Component
 {
-    public string $tweet = '';
+    public string $content = '';
 
     protected $rules = [
-        'tweet' => 'required|string|min:1|max:140'
+        'content' => 'required|string|min:1|max:140'
     ];
 
     public function createTweet()
     {
         $this->validate();
 
-        $this->emitTo('tweets', 'createTweet', $this->tweet);
+        $this->emitTo('tweets', 'createTweet', $this->content);
 
-        $this->tweet = '';
+        $this->content = '';
     }
 
     public function render(): View

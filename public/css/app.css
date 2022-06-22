@@ -757,21 +757,6 @@ select {
 .top-5 {
   top: 1.25rem;
 }
-.right-20 {
-  right: 5rem;
-}
-.right-16 {
-  right: 4rem;
-}
-.right-28 {
-  right: 7rem;
-}
-.right-32 {
-  right: 8rem;
-}
-.right-36 {
-  right: 9rem;
-}
 .right-40 {
   right: 10rem;
 }
@@ -917,6 +902,24 @@ select {
 .ml-5 {
   margin-left: 1.25rem;
 }
+.mr-10 {
+  margin-right: 2.5rem;
+}
+.mr-14 {
+  margin-right: 3.5rem;
+}
+.mr-24 {
+  margin-right: 6rem;
+}
+.ml-16 {
+  margin-left: 4rem;
+}
+.ml-14 {
+  margin-left: 3.5rem;
+}
+.ml-6 {
+  margin-left: 1.5rem;
+}
 .box-border {
   box-sizing: border-box;
 }
@@ -974,6 +977,9 @@ select {
 .h-40 {
   height: 10rem;
 }
+.h-px {
+  height: 1px;
+}
 .h-14 {
   height: 3.5rem;
 }
@@ -1022,11 +1028,11 @@ select {
 .w-1 {
   width: 0.25rem;
 }
-.w-1\/4 {
-  width: 25%;
-}
 .w-3\/5 {
   width: 60%;
+}
+.w-1\/4 {
+  width: 25%;
 }
 .w-40 {
   width: 10rem;
@@ -1051,9 +1057,6 @@ select {
 }
 .max-w-2xl {
   max-width: 42rem;
-}
-.max-w-md {
-  max-width: 28rem;
 }
 .max-w-sm {
   max-width: 24rem;
@@ -1155,11 +1158,20 @@ select {
 .justify-between {
   justify-content: space-between;
 }
+.justify-around {
+  justify-content: space-around;
+}
 .justify-items-center {
   justify-items: center;
 }
 .self-start {
   align-self: flex-start;
+}
+.self-center {
+  align-self: center;
+}
+.self-baseline {
+  align-self: baseline;
 }
 .overflow-hidden {
   overflow: hidden;
@@ -1271,10 +1283,6 @@ select {
   --tw-border-opacity: 1;
   border-color: rgb(129 140 248 / var(--tw-border-opacity));
 }
-.border-gray-500 {
-  --tw-border-opacity: 1;
-  border-color: rgb(107 114 128 / var(--tw-border-opacity));
-}
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
@@ -1310,6 +1318,10 @@ select {
 .bg-gray-800 {
   --tw-bg-opacity: 1;
   background-color: rgb(31 41 55 / var(--tw-bg-opacity));
+}
+.bg-gray-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(229 231 235 / var(--tw-bg-opacity));
 }
 .fill-current {
   fill: currentColor;
@@ -1379,6 +1391,14 @@ select {
   padding-left: 0.25rem;
   padding-right: 0.25rem;
 }
+.px-8 {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+.py-6 {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
 .pt-8 {
   padding-top: 2rem;
 }
@@ -1405,6 +1425,21 @@ select {
 }
 .pr-4 {
   padding-right: 1rem;
+}
+.pb-10 {
+  padding-bottom: 2.5rem;
+}
+.pb-8 {
+  padding-bottom: 2rem;
+}
+.pb-6 {
+  padding-bottom: 1.5rem;
+}
+.pb-4 {
+  padding-bottom: 1rem;
+}
+.pb-2 {
+  padding-bottom: 0.5rem;
 }
 .text-left {
   text-align: left;
@@ -1676,6 +1711,15 @@ input[type="checkbox"]:focus {
 .search-icon {
     background: url("../images/search-icon.png") no-repeat scroll 7px 7px;
     padding-left:2.5rem;
+}
+
+.dot{
+    display: block;
+    height: 3px;
+    width: 3px;
+    border-radius: 9999px;
+    --tw-bg-opacity: 1;
+    background-color: rgb(107 114 128 / var(--tw-bg-opacity));
 }
 
 .hover\:border-gray-300:hover {

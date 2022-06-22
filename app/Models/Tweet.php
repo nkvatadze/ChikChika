@@ -19,7 +19,7 @@ class Tweet extends Model
      */
     public $fillable = [
         'user_id',
-        'tweet'
+        'content'
     ];
 
     /**

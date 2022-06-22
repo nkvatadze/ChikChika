@@ -13,7 +13,7 @@ class TweetReply extends Model
     protected $fillable = [
         'user_id',
         'tweet_id',
-        'reply'
+        'content'
     ];
 
     /**

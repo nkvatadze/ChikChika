@@ -16,11 +16,11 @@
                                 </a>
                             </div>
                             <div class="w-full">
-                                <label class="hidden" for="tweet"></label>
+                                <label class="hidden" for="content"></label>
                                 <textarea
-                                    wire:model.lazy="tweet"
+                                    wire:model.lazy="content"
                                     class="w-full box-border resize-none text-xl py-5 border-transparent focus:border-transparent focus:ring-0 focus:outline-none overflow-visible"
-                                    placeholder="What's happening?" name="tweet" id="tweet"></textarea>
+                                    placeholder="{{ __('What\'s happening?' ) }}" name="content" id="content"></textarea>
                             </div>
                         </div>
                         <div class="flex justify-end">

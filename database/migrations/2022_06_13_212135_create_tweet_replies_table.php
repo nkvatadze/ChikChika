@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->id();
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Tweet::class)->constrained()->cascadeOnDelete();
-            $table->text('reply');
+            $table->text('content');
             $table->timestamps();
         });
     }
