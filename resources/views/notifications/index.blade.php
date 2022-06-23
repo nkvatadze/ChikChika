@@ -26,6 +26,11 @@
                         :data="$notification->data"></x-notifications.unfollowed-by-user>
                     @break
 
+                    @case(App\Enums\NotificationTypes::UserLikedTweet->value)
+                    <x-notifications.user-liked-tweet
+                        :data="$notification->data"></x-notifications.user-liked-tweet>
+                    @break
+
                 @endswitch
             @empty
                 <div class="grid grid-cols-3 mt-20 pb-10">

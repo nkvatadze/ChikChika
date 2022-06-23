@@ -4,14 +4,14 @@ namespace App\Http\Livewire;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\View\View;
 use Livewire\Component;
 
 class Search extends Component
 {
     public string $search = '';
 
-
-    public function render()
+    public function render(): View
     {
         $users = new Collection();
 

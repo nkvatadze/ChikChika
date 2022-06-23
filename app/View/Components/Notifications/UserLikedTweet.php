@@ -2,13 +2,12 @@
 
 namespace App\View\Components\Notifications;
 
-use App\Models\Tweet;
-use App\Models\User;
+use App\Models\TweetLike;
 use Illuminate\View\Component;
 
-class FollowedUserTweeted extends Component
+class UserLikedTweet extends Component
 {
-    public ?Tweet $tweet;
+    public ?TweetLike $tweetLike;
 
     /**
      * Create a new component instance.
@@ -17,7 +16,7 @@ class FollowedUserTweeted extends Component
      */
     public function __construct(array $data)
     {
-        $this->tweet = Tweet::query()->with('user')->find($data['tweet_id']);
+        $this->tweetLike = TweetLike::query()->with('tweet', 'user')->find($data['tweet_like_id']);
     }
 
     /**
@@ -27,6 +26,6 @@ class FollowedUserTweeted extends Component
      */
     public function render()
     {
-        return view('components.notifications.followed-user-tweeted');
+        return view('components.notifications.user-liked-tweet');
     }
 }

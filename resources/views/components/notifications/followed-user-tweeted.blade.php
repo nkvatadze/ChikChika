@@ -10,8 +10,6 @@
                     <p class="text-gray-500">{{ $tweet->content }}</p>
                 </div>
             </div>
-
-            <!-- Because you are alive, everything is possible. - Thich Nhat Hanh -->
         </div>
     </a>
 @endif

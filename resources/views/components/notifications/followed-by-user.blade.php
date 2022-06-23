@@ -9,8 +9,6 @@
                     <p><span class="font-bold">{{ $user->name }}</span> {{ __('Followed you') }}</p>
                 </div>
             </div>
-
-            <!-- Because you are alive, everything is possible. - Thich Nhat Hanh -->
         </div>
     </a>
 @endif
