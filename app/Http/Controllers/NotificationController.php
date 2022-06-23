@@ -11,9 +11,7 @@ class NotificationController extends Controller
     {
         $notifications = auth()->user()->notifications;
 
-        auth()->user()->notifications()->where('read_at')->update([
-            'read_at' => now()
-        ]);
+        auth()->user()->markNotificationsAsRead();
 
         return view('notifications.index', compact('notifications'));
     }

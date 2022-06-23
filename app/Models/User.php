@@ -54,6 +54,13 @@ class User extends Authenticatable implements MustVerifyEmail
         'profile_image_url'
     ];
 
+    public function markNotificationsAsRead(): int
+    {
+        return $this->notifications()->where('read_at')->update([
+            'read_at' => now()
+        ]);
+    }
+
     /**
      * @return BelongsToMany
      */
