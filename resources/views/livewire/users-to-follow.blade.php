@@ -3,7 +3,6 @@
         <h1 class="text-2xl text-center text-gray-500">{{ __('Who to follow') }}</h1>
 
         <div class="flex flex-col justify-center items-start">
-            @include('partials.flash-messages')
 
             @forelse($users as $user)
                 <div
@@ -39,7 +38,7 @@
 
             @empty
                 <div class="w-full flex flex-col justify-center items-center">
-                    <x-icon class="w-6 h-6 my-5" :src="asset('images/sad.png')"/>
+                    <i class="text-2xl my-2 fa-regular fa-face-frown"></i>
                     <p>{{ __('No users to show yet') }}</p>
                 </div>
 

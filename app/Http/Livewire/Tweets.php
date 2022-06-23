@@ -3,7 +3,6 @@
 namespace App\Http\Livewire;
 
 use App\Models\Tweet;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Livewire\Component;
@@ -94,6 +93,11 @@ class Tweets extends Component
         $tweet->likes->pop();
 
         $tweet->likes_count--;
+    }
+
+    public function redirectToTweet(int $tweetId)
+    {
+        redirect()->route('tweets.show', ['tweet' => $tweetId]);
     }
 
     public function render()

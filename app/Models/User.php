@@ -28,7 +28,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'is_private',
         'email',
         'password',
-        'profile_image_url'
+        'profile_image'
     ];
 
     /**
@@ -100,7 +100,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public function profileImageUrl(): Attribute
     {
         return Attribute::make(
-            get: fn($value) => $value ? url('storage/' . $value) : asset('images/default-profile.png')
+            get: fn($value) => $this->profile_image ? url('storage/' . $this->profile_image) : asset('images/default-profile.png')
         );
     }
 

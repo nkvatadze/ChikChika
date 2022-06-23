@@ -32,7 +32,7 @@ class UserController extends Controller
         $validated['is_private'] = isset($validated['is_private']);
 
         if ($request->hasFile('profile_image')) {
-            $validated['profile_image_url'] = $this->upload($request->file('profile_image'), 'profile_images/' . auth()->id());
+            $validated['profile_image'] = $this->upload($request->file('profile_image'), 'profile_images/' . auth()->id());
         }
 
         auth()->user()->update($validated);

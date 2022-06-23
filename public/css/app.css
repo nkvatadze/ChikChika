@@ -869,9 +869,6 @@ select {
 .mt-3 {
   margin-top: 0.75rem;
 }
-.mr-1 {
-  margin-right: 0.25rem;
-}
 .mb-5 {
   margin-bottom: 1.25rem;
 }
@@ -902,23 +899,8 @@ select {
 .ml-5 {
   margin-left: 1.25rem;
 }
-.mr-10 {
-  margin-right: 2.5rem;
-}
-.mr-14 {
-  margin-right: 3.5rem;
-}
 .mr-24 {
   margin-right: 6rem;
-}
-.ml-16 {
-  margin-left: 4rem;
-}
-.ml-14 {
-  margin-left: 3.5rem;
-}
-.ml-6 {
-  margin-left: 1.5rem;
 }
 .box-border {
   box-sizing: border-box;
@@ -980,9 +962,6 @@ select {
 .h-px {
   height: 1px;
 }
-.h-14 {
-  height: 3.5rem;
-}
 .min-h-screen {
   min-height: 100vh;
 }
@@ -1036,9 +1015,6 @@ select {
 }
 .w-40 {
   width: 10rem;
-}
-.w-14 {
-  width: 3.5rem;
 }
 .max-w-7xl {
   max-width: 80rem;
@@ -1143,9 +1119,6 @@ select {
 .items-center {
   align-items: center;
 }
-.items-baseline {
-  align-items: baseline;
-}
 .justify-start {
   justify-content: flex-start;
 }
@@ -1158,20 +1131,11 @@ select {
 .justify-between {
   justify-content: space-between;
 }
-.justify-around {
-  justify-content: space-around;
-}
 .justify-items-center {
   justify-items: center;
 }
 .self-start {
   align-self: flex-start;
-}
-.self-center {
-  align-self: center;
-}
-.self-baseline {
-  align-self: baseline;
 }
 .overflow-hidden {
   overflow: hidden;
@@ -1426,20 +1390,11 @@ select {
 .pr-4 {
   padding-right: 1rem;
 }
-.pb-10 {
-  padding-bottom: 2.5rem;
-}
-.pb-8 {
-  padding-bottom: 2rem;
-}
 .pb-6 {
   padding-bottom: 1.5rem;
 }
-.pb-4 {
-  padding-bottom: 1rem;
-}
-.pb-2 {
-  padding-bottom: 0.5rem;
+.pb-8 {
+  padding-bottom: 2rem;
 }
 .text-left {
   text-align: left;
@@ -1477,13 +1432,13 @@ select {
   font-size: 1rem;
   line-height: 1.5rem;
 }
-.text-xs {
-  font-size: 0.75rem;
-  line-height: 1rem;
-}
 .text-4xl {
   font-size: 2.25rem;
   line-height: 2.5rem;
+}
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
 }
 .font-medium {
   font-weight: 500;
@@ -1736,9 +1691,9 @@ input[type="checkbox"]:focus {
   background-color: #F263AB34;
 }
 
-.hover\:bg-blue-50:hover {
+.hover\:bg-cyan-50:hover {
   --tw-bg-opacity: 1;
-  background-color: rgb(239 246 255 / var(--tw-bg-opacity));
+  background-color: rgb(236 254 255 / var(--tw-bg-opacity));
 }
 
 .hover\:bg-cyan-600:hover {
@@ -1754,21 +1709,6 @@ input[type="checkbox"]:focus {
 .hover\:bg-gray-700:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(55 65 81 / var(--tw-bg-opacity));
-}
-
-.hover\:bg-gray-200:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(229 231 235 / var(--tw-bg-opacity));
-}
-
-.hover\:bg-cyan-200:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(165 243 252 / var(--tw-bg-opacity));
-}
-
-.hover\:bg-cyan-50:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(236 254 255 / var(--tw-bg-opacity));
 }
 
 .hover\:text-gray-500:hover {
@@ -1791,9 +1731,9 @@ input[type="checkbox"]:focus {
   color: rgb(17 24 39 / var(--tw-text-opacity));
 }
 
-.hover\:text-blue-600:hover {
+.hover\:text-cyan-600:hover {
   --tw-text-opacity: 1;
-  color: rgb(37 99 235 / var(--tw-text-opacity));
+  color: rgb(8 145 178 / var(--tw-text-opacity));
 }
 
 .hover\:text-gray-700:hover {
@@ -1804,26 +1744,6 @@ input[type="checkbox"]:focus {
 .hover\:text-gray-800:hover {
   --tw-text-opacity: 1;
   color: rgb(31 41 55 / var(--tw-text-opacity));
-}
-
-.hover\:text-cyan-200:hover {
-  --tw-text-opacity: 1;
-  color: rgb(165 243 252 / var(--tw-text-opacity));
-}
-
-.hover\:text-cyan-100:hover {
-  --tw-text-opacity: 1;
-  color: rgb(207 250 254 / var(--tw-text-opacity));
-}
-
-.hover\:text-cyan-500:hover {
-  --tw-text-opacity: 1;
-  color: rgb(6 182 212 / var(--tw-text-opacity));
-}
-
-.hover\:text-cyan-600:hover {
-  --tw-text-opacity: 1;
-  color: rgb(8 145 178 / var(--tw-text-opacity));
 }
 
 .hover\:underline:hover {
@@ -1967,6 +1887,11 @@ input[type="checkbox"]:focus {
 .group:hover .group-hover\:text-heart-main {
   --tw-text-opacity: 1;
   color: rgb(255 99 171 / var(--tw-text-opacity));
+}
+
+.group:hover .group-hover\:text-cyan-700 {
+  --tw-text-opacity: 1;
+  color: rgb(14 116 144 / var(--tw-text-opacity));
 }
 
 @media (prefers-color-scheme: dark) {

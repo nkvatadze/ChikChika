@@ -12,6 +12,6 @@ class UserPolicy
 
     public function view(User $authUser, User $user)
     {
-        return !$user->is_private || $authUser->hasBeenFollowing($user);
+        return $authUser->is($user) || !$user->is_private || $authUser->hasBeenFollowing($user);
     }
 }
