@@ -35,46 +35,56 @@
                 <div class="mt-2 w-full bg-gray-200 h-px">
                 </div>
             </div>
-            <div class="cursor-pointer group mt-3"
-                 @if($tweet->liked_by_auth_user) wire:click="dislike"
-                 @else wire:click="like"
-                @endif >
-                @if($tweet->liked_by_auth_user)
-                    <i class="fa-solid fa-heart group-hover:bg-heart-hover group-hover:text-heart-main p-2
+            <div @auth @if($tweet->liked_by_auth_user) wire:click="dislike" @else wire:click="like" @endif @endauth
+            class="cursor-pointer group mt-3">
+                @auth
+                    @if($tweet->liked_by_auth_user)
+                        <i class="fa-solid fa-heart group-hover:bg-heart-hover group-hover:text-heart-main p-2
                             rounded-full transition ease-in text-heart-main text-xl"></i>
-                @else
-                    <i class="fa-regular fa-heart group-hover:bg-heart-hover group-hover:text-heart-main p-2
+                    @else
+                        <i class="fa-regular fa-heart group-hover:bg-heart-hover group-hover:text-heart-main p-2
                             rounded-full transition ease-in text-gray-500 text-xl"></i>
-                @endif
+                    @endif
+                @endauth
+
+                @guest
+                    <a href="{{ route('login') }}">
+                        <i class="fa-regular fa-heart group-hover:bg-heart-hover group-hover:text-heart-main p-2
+                            rounded-full transition ease-in text-gray-500 text-xl"></i>
+                    </a>
+
+                @endguest
             </div>
             <div class="w-full">
                 <div class="mt-2 w-full bg-gray-200 h-px">
                 </div>
             </div>
-            <div class="mt-5">
-                <form wire:submit.prevent="reply">
-                    @csrf
-                    <div class="flex justify-start items-start">
-                        <div class="mt-2">
-                            <a href="{{ route('users.show', ['user'=>auth()->user()->username]) }}">
-                                <x-avatar class="w-16 h-16 mr-5" :src="auth()->user()->profile_image_url"/>
-                            </a>
-                        </div>
-                        <div class="w-full">
-                            <label class="hidden" for="content"></label>
-                            <textarea
-                                wire:model.lazy="content"
-                                class="w-full box-border resize-none text-xl py-5 border-transparent focus:border-transparent focus:ring-0 focus:outline-none overflow-visible"
-                                placeholder="{{ __('Chik your reply') }}" name="content" id="content"></textarea>
-                        </div>
-                        <div class="mt-4">
-                            <button
-                                class="bg-cyan-500 items-center text-lg text-white text-ellipsis whitespace-nowrap py-2 px-5 rounded-full hover:bg-cyan-600
+            @auth
+                <div class="mt-5">
+                    <form wire:submit.prevent="reply">
+                        @csrf
+                        <div class="flex justify-start items-start">
+                            <div class="mt-2">
+                                <a href="{{ route('users.show', ['user'=>auth()->user()->username]) }}">
+                                    <x-avatar class="w-16 h-16 mr-5" :src="auth()->user()->profile_image_url"/>
+                                </a>
+                            </div>
+                            <div class="w-full">
+                                <label class="hidden" for="content"></label>
+                                <textarea
+                                    wire:model.lazy="content"
+                                    class="w-full box-border resize-none text-xl py-5 border-transparent focus:border-transparent focus:ring-0 focus:outline-none overflow-visible"
+                                    placeholder="{{ __('Chik your reply') }}" name="content" id="content"></textarea>
+                            </div>
+                            <div class="mt-4">
+                                <button
+                                    class="bg-cyan-500 items-center text-lg text-white text-ellipsis whitespace-nowrap py-2 px-5 rounded-full hover:bg-cyan-600
                                 cursor-pointer transition duration-300 ease-in-out">{{ __('Chik') }}</button>
+                            </div>
                         </div>
-                    </div>
-                </form>
-            </div>
+                    </form>
+                </div>
+            @endauth
         </div>
         @foreach($tweet->replies as $reply)
             <div
@@ -84,7 +94,7 @@
                     {{-- Wrap anchord tag in object tag in order to have nested links --}}
                     <object>
                         <a href="{{ route('users.show', ['user' => $reply->user->username]) }}">
-                            <x-avatar class="w-20 h-20 mr-5" :src="$tweet->user->profile_image_url"/>
+                            <x-avatar class="w-20 h-20 mr-5" :src="$reply->user->profile_image_url"/>
                         </a>
                     </object>
                 </div>
@@ -113,7 +123,9 @@
         @endforeach
 
     </div>
-    <div class="col-span-1">
-        <livewire:users-to-follow/>
-    </div>
+    @auth
+        <div class="col-span-1">
+            <livewire:users-to-follow/>
+        </div>
+    @endauth
 </div>

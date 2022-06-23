@@ -39,7 +39,7 @@
             @empty
                 <div class="w-full flex flex-col justify-center items-center">
                     <i class="text-2xl my-2 fa-regular fa-face-frown"></i>
-                    <p>{{ __('No users to show yet') }}</p>
+                    <p>{{ __('No users to follow yet') }}</p>
                 </div>
 
             @endforelse

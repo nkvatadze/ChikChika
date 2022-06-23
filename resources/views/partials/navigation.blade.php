@@ -17,13 +17,18 @@
                     <span class="text-lg">{{ __('Home') }}</span>
                 </div>
             </a>
-            <a class="text-ellipsis whitespace-nowrap rounded "
-               href="#">
+            <a class="text-ellipsis whitespace-nowrap rounded"
+               href="{{ route('notifications.index') }}">
                 <div
-                    class="flex flex-row justify-between items-center mt-3 py-2 rounded-full px-5 ml-2 hover:text-cyan-600
+                    class="relative flex flex-row justify-between items-center mt-3 py-2 rounded-full px-5 ml-2 hover:text-cyan-600
                 hover:bg-cyan-50 transition duration-300 ease-in-out text-left">
-                    <i class="mr-2 text-3xl fa-regular fa-bell"></i>
-                    <span class="text-lg ">{{ __('Notifications') }}</span>
+                    <i class="z-10 relative mr-2 text-3xl fa-regular fa-bell"></i>
+                    <span class="z-10 relative text-lg">{{ __('Notifications') }}</span>
+                    @if($unreadNotifications)
+                        <div class="absolute z-20 top-0 left-7 text-white rounded-full bg-cyan-500 text-xs px-1.5 py-0.5 border">
+                            {{ $unreadNotifications }}
+                        </div>
+                    @endif
                 </div>
             </a>
         </div>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\UserController;
 use App\Http\Livewire\Followers;
 use App\Http\Livewire\Followings;
@@ -33,6 +34,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
         ->group(function () {
             Route::get('/edit', 'edit')->name('edit');
             Route::patch('/', 'update')->name('update');
+        });
+
+    Route::controller(NotificationController::class)->prefix('notifications')->name('notifications.')
+        ->group(function () {
+            Route::get('/', 'index')->name('index');
         });
 });
 

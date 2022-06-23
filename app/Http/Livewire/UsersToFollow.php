@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\User;
+use App\Notifications\FollowedByUser;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Livewire\Component;
 

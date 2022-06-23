@@ -22,13 +22,13 @@
 <body class="font-sans antialiased">
 <div class="min-h-screen bg-gray-100 grid grid-cols-4 auto-cols-max">
 
-    <div class="col-span-1 z-50">
-        @include('layouts.navigation')
+    <div class="col-span-1">
+        @include('partials.navigation')
     </div>
 
     <div class="col-span-3">
         @if(isset($header))
-            <header class="fixed bg-white w-full top-0 h-20 z-50 border-l border-gray-100 px-14 py-4">
+            <header class="fixed bg-white w-full top-0 h-20 border-l border-gray-100 px-14 py-4">
                 {{ $header }}
                 <livewire:search/>
             </header>
