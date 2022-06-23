@@ -31,6 +31,11 @@
                         :data="$notification->data"></x-notifications.user-liked-tweet>
                     @break
 
+                    @case(App\Enums\NotificationTypes::UserRepliedToTweet->value)
+                    <x-notifications.user-replied-to-tweet
+                        :data="$notification->data"></x-notifications.user-replied-to-tweet>
+                    @break
+
                 @endswitch
             @empty
                 <div class="grid grid-cols-3 mt-20 pb-10">

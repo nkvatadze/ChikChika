@@ -1452,6 +1452,18 @@ select {
 .pb-10 {
   padding-bottom: 2.5rem;
 }
+.pl-10 {
+  padding-left: 2.5rem;
+}
+.pr-6 {
+  padding-right: 1.5rem;
+}
+.pb-4 {
+  padding-bottom: 1rem;
+}
+.pt-10 {
+  padding-top: 2.5rem;
+}
 .text-left {
   text-align: left;
 }
@@ -1613,6 +1625,17 @@ select {
 .text-red-700 {
   --tw-text-opacity: 1;
   color: rgb(185 28 28 / var(--tw-text-opacity));
+}
+.text-replies {
+  color: #1d9bf01a;
+}
+.text-purple-700 {
+  --tw-text-opacity: 1;
+  color: rgb(126 34 206 / var(--tw-text-opacity));
+}
+.text-fuchsia-700 {
+  --tw-text-opacity: 1;
+  color: rgb(162 28 175 / var(--tw-text-opacity));
 }
 .underline {
   -webkit-text-decoration-line: underline;
