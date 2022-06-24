@@ -35,7 +35,7 @@
                 <div class="mt-2 w-full bg-gray-200 h-px">
                 </div>
             </div>
-            <div @auth @if($tweet->liked_by_auth_user) wire:click="dislike" @else wire:click="like" @endif @endauth
+            <div @auth @if($tweet->liked_by_auth_user) wire:click="unlike" @else wire:click="like" @endif @endauth
             class="cursor-pointer group mt-3">
                 @auth
                     @if($tweet->liked_by_auth_user)
