@@ -7,6 +7,7 @@ use App\Notifications\FollowedUserTweeted;
 use App\Notifications\UnfollowedByUser;
 use App\Notifications\UserRepliedToTweet;
 use App\Notifications\UserLikedTweet;
+use App\Notifications\WeeklyAggregate;
 
 enum NotificationTypes: string
 {
@@ -15,4 +16,5 @@ enum NotificationTypes: string
     case UnfollowedByUser = UnfollowedByUser::class;
     case UserRepliedToTweet = UserRepliedToTweet::class;
     case UserLikedTweet = UserLikedTweet::class;
+    case WeeklyAggregate = WeeklyAggregate::class;
 }

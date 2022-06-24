@@ -36,6 +36,11 @@
                         :data="$notification->data"></x-notifications.user-replied-to-tweet>
                     @break
 
+                    @case(App\Enums\NotificationTypes::WeeklyAggregate->value)
+                    <x-notifications.weekly-aggregate
+                        :data="$notification->data"></x-notifications.weekly-aggregate>
+                    @break
+
                 @endswitch
             @empty
                 <div class="grid grid-cols-3 mt-20 pb-10">
