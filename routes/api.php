@@ -27,6 +27,8 @@ Route::prefix('v1')->name('api.')->group(function () {
 
         Route::controller(TweetController::class)->prefix('tweets')->name('tweets.')->group(function () {
             Route::get('/', 'index')->name('index');
+            Route::post('/', 'store')->name('store');
+            Route::get('/{tweet}', 'show')->name('show');
         });
     });
 });
