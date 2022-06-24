@@ -1,8 +1,8 @@
 <x-app-layout>
     <div class="py-4 m-10 grid grid-cols-3">
         <div class="col-span-1">
-            <h1 class="text-2xl">Update Personal Information</h1>
-            <h3 class="text-md mt-3">You can edit your personal information here</h3>
+            <h1 class="text-2xl">{{ __('Update Personal Information') }}</h1>
+            <h3 class="text-md mt-3">{{ __('You can edit your personal information here') }}</h3>
         </div>
         <div class="col-span-2">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -49,7 +49,7 @@
                             </label>
 
                             <input type="text" name="username"
-                                   class="col-span-2 w-full px-3 py-1 @error('username') border-2 border-red-400 @else border-gray-400 @enderror w-1/2 rounded"
+                                   class="col-span-2 px-3 py-1 @error('username') border-2 border-red-400 @else border-gray-400 @enderror w-1/2 rounded"
                                    id="username" value="{{ auth()->user()->username }}">
 
                         </div>
@@ -80,7 +80,7 @@
                             </label>
 
                             <input type="file" name="profile_image"
-                                   class="col-span-2 w-full px-3 py-1 @error('profile_image') border-2 border-red-400 @else border-gray-400 @enderror w-1/2 rounded"
+                                   class="col-span-2  px-3 py-1 @error('profile_image') border-2 border-red-400 @else border-gray-400 @enderror w-1/2 rounded"
                                    id="profile_image">
                         </div>
                         <div class="ml-10">
@@ -100,6 +100,17 @@
                         @enderror
                     </form>
                 </div>
+            </div>
+        </div>
+        <div class="col-span-1 mt-20">
+            <h1 class="text-2xl">{{ __('Get API credentials') }}</h1>
+            <h3 class="text-md mt-3">{{ __('You can generate API bearer token to authorize API calls') }}</h3>
+        </div>
+        <div class="col-span-2 mt-20">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <livewire:access-token>
+
+                </livewire:access-token>
             </div>
         </div>
     </div>

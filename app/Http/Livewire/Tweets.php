@@ -29,21 +29,7 @@ class Tweets extends Component
 
     public function loadTweets(): void
     {
-        $tweets = Tweet::query()->withCount('likes', 'replies')
-            ->with([
-                'user',
-                'likes' => fn($query) => $query->where('user_id', auth()->id())
-            ])
-            ->when(
-                $this->tweetsByUserId,
-                fn(Builder $query) => $query->where('user_id', $this->tweetsByUserId),
-                fn(Builder $query) => $query->where(function (Builder $query) {
-                    $query->whereHas('user.followers', fn(Builder $query) => $query->where('follower_id', auth()->id()))
-                        ->orWhere('user_id', auth()->id());
-                })
-            )
-            ->orderByDesc('id')
-            ->paginate(self::PER_PAGE, page: $this->page);
+        $tweets = (new Tweet)->tweetsForFeed($this->page);
 
         $this->tweets->push(...$tweets->items());
 

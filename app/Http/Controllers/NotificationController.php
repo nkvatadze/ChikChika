@@ -9,7 +9,7 @@ class NotificationController extends Controller
 {
     public function index(): View
     {
-        $notifications = auth()->user()->notifications;
+        $notifications = auth()->user()->notifications()->orderBy('id', 'DESC')->paginate(30);
 
         auth()->user()->markNotificationsAsRead();
 
