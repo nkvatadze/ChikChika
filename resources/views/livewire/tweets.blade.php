@@ -36,7 +36,7 @@
                         </div>
                     </a>
                     <div class="flex z-50 justify-start items-center cursor-pointer group"
-                         @if($tweet->liked_by_auth_user) wire:click.stop="dislike({{ $tweet->id }})"
+                         @if($tweet->liked_by_auth_user) wire:click.stop="unlike({{ $tweet->id }})"
                          @else wire:click.stop="like({{ $tweet->id }})"
                         @endif>
                         @if($tweet->liked_by_auth_user)

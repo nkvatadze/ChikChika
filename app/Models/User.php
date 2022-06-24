@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -111,14 +112,6 @@ class User extends Authenticatable implements MustVerifyEmail
         );
     }
 
-    public function hasBeenFollowing($user): bool
-    {
-        return (bool)$this->whereHas(
-            'followings',
-            fn(Builder $query) => $query->where('user_id', $user->id)
-        )->first();
-    }
-
     public function scopeIsAuth(Builder $query): Builder
     {
         return $query->where('id', auth()->id());
@@ -132,5 +125,30 @@ class User extends Authenticatable implements MustVerifyEmail
     public function scopeNotFollowedBy(Builder $query, int $userId): Builder
     {
         return $query->whereDoesntHave('followers', fn($query) => $query->where('follower_id', $userId));
+    }
+
+    public function hasBeenFollowing($user): bool
+    {
+        return (bool)$this->whereHas(
+            'followings',
+            fn(Builder $query) => $query->where('user_id', $user->id)
+        )->first();
+    }
+
+    public function likeTweet(int $tweetId): Model
+    {
+        return $this->likedTweets()->create([
+            'tweet_id' => $tweetId
+        ]);
+    }
+
+    public function unlikeTweet(int $tweetId): int
+    {
+        return $this->likedTweets()->where('tweet_id', $tweetId)->delete();
+    }
+
+    public function hasLikedTweet(int $tweetId): bool
+    {
+        return $this->likedTweets()->where('tweet_id', $tweetId)->exists();
     }
 }

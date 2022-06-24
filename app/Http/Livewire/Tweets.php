@@ -59,9 +59,7 @@ class Tweets extends Component
 
     public function like($tweetId): void
     {
-        $like = auth()->user()->likedTweets()->create([
-            'tweet_id' => $tweetId
-        ]);
+        $like = auth()->user()->likeTweet($tweetId);
 
         $tweet = $this->tweets->find($tweetId);
 
@@ -70,9 +68,9 @@ class Tweets extends Component
         $tweet->likes_count++;
     }
 
-    public function dislike($tweetId): void
+    public function unlike($tweetId): void
     {
-        auth()->user()->likedTweets()->where('tweet_id', $tweetId)->delete();
+        auth()->user()->unlikeTweet($tweetId);
 
         $tweet = $this->tweets->find($tweetId);
 

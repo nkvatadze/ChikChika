@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\API\TweetController;
+use App\Http\Controllers\API\TweetLikeController;
+use App\Http\Controllers\API\TweetReplyController;
 use App\Http\Controllers\API\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -25,10 +27,24 @@ Route::prefix('v1')->name('api.')->group(function () {
             Route::get('/follows', 'follows')->name('follows');
         });
 
-        Route::controller(TweetController::class)->prefix('tweets')->name('tweets.')->group(function () {
-            Route::get('/', 'index')->name('index');
-            Route::post('/', 'store')->name('store');
-            Route::get('/{tweet}', 'show')->name('show');
+        Route::prefix('tweets')->name('tweets.')->group(function () {
+            Route::controller(TweetController::class)->group(function () {
+                Route::get('/', 'index')->name('index');
+                Route::post('/', 'store')->name('store');
+                Route::get('/{tweet}', 'show')->name('show');
+            });
+
+            Route::controller(TweetReplyController::class)->name('replies.')->group(function () {
+                Route::get('/{tweet}/replies', 'index')->name('index');
+                Route::post('/{tweet}/replies', 'store')->name('store');
+            });
+
+            Route::controller(TweetLikeController::class)->name('likes.')->group(function () {
+                Route::post('/{tweet}/like', 'like')->name('like');
+                Route::delete('/{tweet}/unlike', 'unlike')->name('unlike');
+
+            });
+
         });
     });
 });

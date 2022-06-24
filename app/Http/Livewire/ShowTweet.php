@@ -25,18 +25,16 @@ class ShowTweet extends Component
 
     public function like(): void
     {
-        $like = auth()->user()->likedTweets()->create([
-            'tweet_id' => $this->tweet->id
-        ]);
+        $like = auth()->user()->likeTweet($this->tweet->id);
 
         $this->tweet->likes->push($like);
 
         $this->tweet->likes_count++;
     }
 
-    public function dislike(): void
+    public function unlike(): void
     {
-        auth()->user()->likedTweets()->where('tweet_id', $this->tweet->id)->delete();
+        auth()->user()->unlikeTweet($this->tweet->id);
 
         $this->tweet->likes->pop();
 

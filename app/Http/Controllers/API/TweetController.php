@@ -3,13 +3,10 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\API\Tweets\IndexRequest;
-use App\Http\Requests\API\Tweets\StoreRequest;
+use App\Http\Requests\API\Tweets\{IndexRequest, StoreRequest};
 use App\Http\Resources\TweetResource;
 use App\Models\Tweet;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Response;
 
