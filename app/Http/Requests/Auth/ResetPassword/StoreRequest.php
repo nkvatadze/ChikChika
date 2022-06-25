@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\RegisteredUser;
+namespace App\Http\Requests\Auth\ResetPassword;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Password;
@@ -25,8 +25,8 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'username' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'token' => 'required',
+            'email' => 'required|email',
             'password' => ['required', 'confirmed', Password::defaults()],
         ];
     }
