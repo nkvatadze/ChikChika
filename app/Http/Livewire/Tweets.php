@@ -29,7 +29,7 @@ class Tweets extends Component
 
     public function loadTweets(): void
     {
-        $tweets = (new Tweet)->tweetsForFeed($this->page);
+        $tweets = (new Tweet)->tweetsForFeed($this->page, $this->tweetsByUserId);
 
         $this->tweets->push(...$tweets->items());
 

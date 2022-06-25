@@ -3,12 +3,15 @@
 namespace App\Http\Livewire;
 
 use App\Models\Tweet;
-use App\Models\TweetReply;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\View\View;
 use Livewire\Component;
 
 class ShowTweet extends Component
 {
+    use AuthorizesRequests;
+
     public Tweet $tweet;
     public string $content;
 
@@ -55,8 +58,13 @@ class ShowTweet extends Component
         $this->content = '';
     }
 
+    /**
+     * @throws AuthorizationException
+     */
     public function render(): View
     {
+        $this->authorize('show', $this->tweet);
+
         $this->tweet->loadCount('replies', 'likes')->load([
             'replies' => fn($query) => $query->orderBy('id', 'DESC'),
             'replies.user',

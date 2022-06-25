@@ -36,22 +36,30 @@
                         </div>
                     </a>
                     <div class="flex z-50 justify-start items-center cursor-pointer group"
-                         @if($tweet->liked_by_auth_user) wire:click.stop="unlike({{ $tweet->id }})"
+                         @auth @if($tweet->liked_by_auth_user) wire:click.stop="unlike({{ $tweet->id }})"
                          @else wire:click.stop="like({{ $tweet->id }})"
-                        @endif>
-                        @if($tweet->liked_by_auth_user)
-                            <i class="fa-solid fa-heart group-hover:bg-heart-hover group-hover:text-heart-main p-2
+                        @endif @endauth>
+                        @auth
+                            @if($tweet->liked_by_auth_user)
+                                <i class="fa-solid fa-heart group-hover:bg-heart-hover group-hover:text-heart-main p-2
                             rounded-full transition ease-in text-heart-main text-xl">
-                            </i>
-                        @else
-                            <i class="fa-regular fa-heart group-hover:bg-heart-hover group-hover:text-heart-main p-2
+                                </i>
+                            @else
+                                <i class="fa-regular fa-heart group-hover:bg-heart-hover group-hover:text-heart-main p-2
                             rounded-full transition ease-in text-gray-500 text-xl">
-                            </i>
-                        @endif
-                        @if($tweet->likes_count)
-                            <span
-                                class="text-sm @if($tweet->liked_by_auth_user) text-heart-main @endif ml-2 mt-1 group-hover:text-heart-main">{{ $tweet->likes_count }}</span>
-                        @endif
+                                </i>
+                            @endif
+                            @if($tweet->likes_count)
+                                <span
+                                    class="text-sm @if($tweet->liked_by_auth_user) text-heart-main @endif ml-2 mt-1 group-hover:text-heart-main">{{ $tweet->likes_count }}</span>
+                            @endif
+                        @endauth
+                        @guest
+                            <a href="{{ route('login') }}">
+                                <i class="fa-regular fa-heart group-hover:bg-heart-hover group-hover:text-heart-main p-2
+                            rounded-full transition ease-in text-gray-500 text-xl"></i>
+                            </a>
+                        @endguest
                     </div>
                 </div>
             </div>

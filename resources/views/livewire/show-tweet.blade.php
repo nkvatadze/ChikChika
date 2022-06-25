@@ -52,7 +52,6 @@
                         <i class="fa-regular fa-heart group-hover:bg-heart-hover group-hover:text-heart-main p-2
                             rounded-full transition ease-in text-gray-500 text-xl"></i>
                     </a>
-
                 @endguest
             </div>
             <div class="w-full">
