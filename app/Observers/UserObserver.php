@@ -10,7 +10,6 @@ class UserObserver
     public function creating(User $user)
     {
         $user->name = $user->username;
-        $user->password = Hash::make($user->password);
     }
 
     public function updating(User $user)
@@ -19,5 +18,10 @@ class UserObserver
             if ($user->getOriginal('profile_image'))
                 Storage::disk('public')->delete($user->getOriginal('profile_image'));
         }
+    }
+
+    public function saving(User $user)
+    {
+        $user->password = Hash::make($user->password);
     }
 }

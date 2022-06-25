@@ -3,6 +3,7 @@
 namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Password;
 
 class UpdateRequest extends FormRequest
 {
@@ -28,7 +29,9 @@ class UpdateRequest extends FormRequest
             'name' => 'sometimes|string',
             'username' => 'sometimes|alpha_dash|unique:users,username,' . auth()->id(),
             'bio' => 'sometimes|nullable|string|max:500',
-            'profile_image' => 'sometimes|image'
+            'profile_image' => 'sometimes|image',
+            'old_password' => 'sometimes|string',
+            'password' => ['required_with:old_password', 'confirmed', 'string', Password::default()],
         ];
     }
 }
